@@ -1,0 +1,65 @@
+<div class="fadeIn animated">
+    <div class="row">
+      <div class="col-6">
+        <div class="card card-body border">
+        <div class="row pl-3">
+          <i class="fa fa-group"></i>
+          <span class="box-title m-b-0 ml-2 h5">Datos Asociación</span>
+        </div>
+          <span class="text-muted font-13"> A continuación ingrese información de la asociación</span>
+          <hr>
+          <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                  <form>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Nombre</label>
+                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nombres">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Representante</label>
+                        <select class="form-control" name="" id="">
+                          <option value="">Alberto Barrionuevo</option>
+                          <option value="">Carlos Duran</option>
+                          <option value="">Esteban Quito</option>
+                        </select>
+                    </div>
+                      <div class="form-group">
+                          <label for="exampleInputPassword1">Dirección</label>
+                          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Dirección">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Ciudad</label>
+                        <select class="form-control" name="" id="">
+                          <option value="">Warnes</option>
+                          <option value="">Montero</option>
+                          <option value="">Santa Cruz</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Fecha de creación</label>
+                        <input type="date" class="form-control" id="exampleInputPassword1">
+                    </div>
+
+                   <!--<div class="d-flex justify-content-end">
+                      <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Guardar</button>
+                      <button type="submit" class="btn btn-inverse waves-effect waves-light">Limpiar</button>
+                   </div>-->
+                  </form>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card card-body border">
+          <div class="box-title m-b-0 h5">Imagen</div>
+          <p class="text-muted m-b-0 font-13"> Nombre Asociación </p>
+          <hr>
+          <div class="row d-flex justify-content-center">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGv0ZKPidVxJZ0NA7T7hpnkhZJpstMJVtAK6IGjo8STGqKOoG1olj2kuw4vcqN7Wv-LDs&usqp=CAU" class="w-300">
+            <input type="file" class="my-2" (change)="onFileChange($event)">
+            <button mat-raised-button color="primary" (click)="updateImage()" [disabled]="!imageLoad"  class="btn px-5 form-control scale"><i class="fa fa-save"></i> Actualizar Imagen</button>
+          </div>   
+        </div>
+      </div>
+    </div>
+  </div>

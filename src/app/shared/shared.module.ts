@@ -17,7 +17,7 @@ import { HeaderComponent } from './header/header.component';
   exports: [
     BreadcrumbsComponent,
     SidebarComponent,
-    HeaderComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,

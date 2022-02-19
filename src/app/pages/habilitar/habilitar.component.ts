@@ -43,11 +43,11 @@ const NAMES: string[] = [
 ];
 
 @Component({
-  selector: 'app-consultar',
-  templateUrl: './consultar.component.html',
-  styleUrls: ['./consultar.component.css']
+  selector: 'app-habilitar',
+  templateUrl: './habilitar.component.html',
+  styleUrls: ['./habilitar.component.css']
 })
-export class ConsultarComponent implements OnInit, AfterViewInit {
+export class HabilitarComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
   dataSource: MatTableDataSource<UserData>;
@@ -56,11 +56,11 @@ export class ConsultarComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor() { 
-    // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+        // Create 100 users
+        const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
 
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+        // Assign the data to the data source for the table to render
+        this.dataSource = new MatTableDataSource(users);
   }
 
   ngOnInit(): void {
@@ -97,3 +97,4 @@ function createNewUser(id: number): UserData {
     fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
   };
 }
+

@@ -12,4 +12,9 @@ export class EstadisticasComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public labels1: string[] = ['Pan', 'Refresco', 'Tacos'];
+  public data1 = [
+    [10, 15, 40],
+  ];
+
 }

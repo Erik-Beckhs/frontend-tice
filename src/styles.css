@@ -10,7 +10,6 @@
     cursor: pointer;
 }
 
-
 #google-btn {
     align-items: center;
     display: flex;
@@ -27,4 +26,16 @@
     width:150px !important;
 }
 
+.w-200{
+    width:200px;
+}
+
+.w-300{
+    width:300px;
+}
+
 /*///width///*/
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

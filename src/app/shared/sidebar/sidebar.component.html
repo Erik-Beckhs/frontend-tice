@@ -8,9 +8,9 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <li class="user-profile">
-                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><img src="./assets/images/users/profile.png" alt="user" /><span class="hide-menu">Erik Maquera </span></a>
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><img src="./assets/images/users/ros.jpg" alt="user" /><span class="hide-menu">Rosario Quispe </span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="javascript:void()">Mi Perfil </a></li>
+                        <li><a [routerLink]="['/dashboard/profile']" routerLinkActive="router-link-active" >Mi Perfil </a></li>
                         <li><a href="javascript:void()">Inbox</a></li>
                         <li><a routerLink="account-settings">Configuración</a></li>
                         <li><a routerLink="/login">Salir</a></li>
