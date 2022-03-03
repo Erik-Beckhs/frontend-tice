@@ -25,25 +25,9 @@ export class UsuarioService {
   constructor( private http: HttpClient, 
                 private router: Router,
                 private ngZone: NgZone ) {
-
-    this.googleInit();
   }
 
 
-  googleInit() {
-
-    return new Promise( resolve => {
-      gapi.load('auth2', () => {
-        this.auth2 = gapi.auth2.init({
-          client_id: '1045072534136-oqkjcjvo449uls0bttgvl3aejelh22f5.apps.googleusercontent.com',
-          cookiepolicy: 'single_host_origin',
-        });
-
-        resolve();
-      });
-    })
-
-  }
 
   logout() {
     localStorage.removeItem('token');

@@ -8,10 +8,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatIconModule} from '@angular/material/icon';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 // Modulos
 import { SharedModule } from '../shared/shared.module';
 import { ComponentsModule } from '../components/components.module';
+import { MatCardModule } from '@angular/material/card';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
@@ -33,6 +36,9 @@ import { MovilidadAsocComponent } from './movilidad-asoc/movilidad-asoc.componen
 import { HabilitarComponent } from './habilitar/habilitar.component';
 import { ProfileComponent } from './profile/profile.component';
 
+import { EmptyImgPipe } from '../pipes/empty-img.pipe';
+
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -51,7 +57,8 @@ import { ProfileComponent } from './profile/profile.component';
     AsociacionComponent,
     MovilidadAsocComponent,
     HabilitarComponent,
-    ProfileComponent
+    ProfileComponent,
+    EmptyImgPipe
   ],
   exports: [
     DashboardComponent,
@@ -62,7 +69,8 @@ import { ProfileComponent } from './profile/profile.component';
     AsociacionComponent,
     MovilidadAsocComponent,
     HabilitarComponent,
-    ProfileComponent
+    ProfileComponent,
+    EmptyImgPipe
   ],
   imports: [ 
     CommonModule,
@@ -76,7 +84,10 @@ import { ProfileComponent } from './profile/profile.component';
     MatInputModule,
     MatButtonModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatIconModule,
+    NgxQRCodeModule, 
+    MatCardModule
   ]
 })
 export class PagesModule { }

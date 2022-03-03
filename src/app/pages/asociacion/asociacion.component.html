@@ -17,12 +17,13 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Representante</label>
-                        <select class="form-control" name="" id="">
-                          <option value="">Alberto Barrionuevo</option>
-                          <option value="">Carlos Duran</option>
-                          <option value="">Esteban Quito</option>
-                        </select>
-                    </div>
+                        <div class="row d-flex">
+                          <input type="text" [disabled]="!representante" class="form-control">
+                          <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+                            <mat-icon>search</mat-icon>
+                          </button>
+                        </div>
+                      </div>
                       <div class="form-group">
                           <label for="exampleInputPassword1">Dirección</label>
                           <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Dirección">
@@ -40,10 +41,10 @@
                         <input type="date" class="form-control" id="exampleInputPassword1">
                     </div>
 
-                   <!--<div class="d-flex justify-content-end">
-                      <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Guardar</button>
-                      <button type="submit" class="btn btn-inverse waves-effect waves-light">Limpiar</button>
-                   </div>-->
+                   <div class="d-flex justify-content-end">
+                      <button mat-raised-button color="primary" type="submit" class="form-control waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Guardar</button>
+                      <!--<button type="submit" class="btn btn-inverse waves-effect waves-light">Limpiar</button>-->
+                   </div>
                   </form>
               </div>
           </div>

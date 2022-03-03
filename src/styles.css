@@ -34,8 +34,32 @@
     width:300px;
 }
 
+
+
 /*///width///*/
+
+/*///height*/
+.min-h-200{
+    min-height: 200px;;
+}
+
+.h-150{
+    height:150px;
+}
+
+/*height*/
+
+.empty-photo{
+    height: 200px;
+    width:200px;
+    border-radius: 5px solid #999;;
+    background-color: #999;
+}
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.fw-bold{
+    font-weight: bold;
+}

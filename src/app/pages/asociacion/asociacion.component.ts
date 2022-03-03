@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AsociacionComponent implements OnInit {
   imageLoad:boolean=true;
+  representante:string;
 
   constructor() { }
 
