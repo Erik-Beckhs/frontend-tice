@@ -20,6 +20,8 @@ import { AsociacionComponent } from './asociacion/asociacion.component';
 import { MovilidadAsocComponent } from './movilidad-asoc/movilidad-asoc.component';
 import { HabilitarComponent } from './habilitar/habilitar.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SindicatosListComponent } from './sindicatos-list/sindicatos-list.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 const routes: Routes = [
     { 
@@ -35,8 +37,10 @@ const routes: Routes = [
             { path: 'listas', component: ListasComponent, data: { titulo: 'Listas' }},
             { path: 'estadisticas', component: EstadisticasComponent, data: { titulo: 'Estadisticas' }},
             { path: 'asociacion', component: AsociacionComponent, data: { titulo: 'Asociacion' }},
+            { path: 'sindicatos', component: SindicatosListComponent, data: { titulo: 'Sindicatos' }},
             { path: 'movilidad-asoc', component: MovilidadAsocComponent, data: { titulo: 'Asociaciones y Movilidades' }},
             { path: 'habilitar', component: HabilitarComponent, data: { titulo: 'Habilitar / Deshabilitar Usuarios' }},
+            { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Temas' }}
             //{ path: 'grafica', component: Grafica1Component, data: { titulo: 'Habilitar / Deshabilitar Usuarios' }},
         ]
     },

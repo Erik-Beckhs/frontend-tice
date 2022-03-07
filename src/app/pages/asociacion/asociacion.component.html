@@ -10,39 +10,34 @@
           <hr>
           <div class="row">
               <div class="col-sm-12 col-xs-12">
-                  <form>
+                <form ngNativeValidate #f="ngForm">
                     <div class="form-group">
                         <label for="exampleInputPassword1">Nombre</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nombres">
+                        <input type="text" class="form-control" [(ngModel)]="asociacion.nombre" name="nombre" id="exampleInputPassword1" placeholder="Nombres">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Representante</label>
-                        <div class="row d-flex">
-                          <input type="text" [disabled]="!representante" class="form-control">
-                          <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
-                            <mat-icon>search</mat-icon>
-                          </button>
-                        </div>
+                        <input placeholder="Representante" type="text" class="form-control" [(ngModel)]="asociacion.representante" name="representante" class="form-control">
                       </div>
                       <div class="form-group">
                           <label for="exampleInputPassword1">Dirección</label>
-                          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Dirección">
+                          <input type="text" class="form-control" [(ngModel)]="asociacion.direccion" name="direccion" id="exampleInputPassword1" placeholder="Dirección">
                       </div>
                       <div class="form-group">
                         <label for="exampleInputPassword1">Ciudad</label>
-                        <select class="form-control" name="" id="">
-                          <option value="">Warnes</option>
-                          <option value="">Montero</option>
-                          <option value="">Santa Cruz</option>
+                        <select class="form-control" name="ciudad" id="">
+                          <option value="Warnes">Warnes</option>
+                          <option value="Montero">Montero</option>
+                          <option value="Santa Cruz">Santa Cruz</option>
                         </select>
                       </div>
                       <div class="form-group">
                         <label for="exampleInputPassword1">Fecha de creación</label>
-                        <input type="date" class="form-control" id="exampleInputPassword1">
+                        <input type="date" class="form-control" [(ngModel)]="asociacion.fcreacion" name="fcreacion" id="exampleInputPassword1">
                     </div>
 
                    <div class="d-flex justify-content-end">
-                      <button mat-raised-button color="primary" type="submit" class="form-control waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Guardar</button>
+                      <button mat-raised-button color="primary" (click)="registrarAsociacion(f.value)" type="submit" class="form-control waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Guardar</button>
                       <!--<button type="submit" class="btn btn-inverse waves-effect waves-light">Limpiar</button>-->
                    </div>
                   </form>
@@ -53,13 +48,19 @@
       <div class="col-6">
         <div class="card card-body border">
           <div class="box-title m-b-0 h5">Imagen</div>
-          <p class="text-muted m-b-0 font-13"> Nombre Asociación </p>
+          <p class="text-muted m-b-0 font-13"> {{asociacion.nombre}} </p>
           <hr>
-          <div class="row d-flex justify-content-center">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGv0ZKPidVxJZ0NA7T7hpnkhZJpstMJVtAK6IGjo8STGqKOoG1olj2kuw4vcqN7Wv-LDs&usqp=CAU" class="w-300">
-            <input type="file" class="my-2" (change)="onFileChange($event)">
-            <button mat-raised-button color="primary" (click)="updateImage()" [disabled]="!imageLoad"  class="btn px-5 form-control scale"><i class="fa fa-save"></i> Actualizar Imagen</button>
+          <div class="row d-flex" style="flex-direction: column;">
+            <div style="text-align:center;">
+              <img *ngIf="!imageTemp" [src]="asociacion.img" alt="" class="w-200">
+              <img *ngIf="imageTemp" [src]="imageTemp" alt="" class="w-200">
+            </div>
+            <div style="text-align:center;">
+              <input type="file" class="my-2" (change)="onFileChange($event)">
+            </div>
+
           </div>   
+          <button mat-raised-button color="primary" (click)="updateImage()" [disabled]="!imageLoad"  class="btn px-5 form-control scale"><i class="fa fa-save"></i> Actualizar Imagen</button>
         </div>
       </div>
     </div>

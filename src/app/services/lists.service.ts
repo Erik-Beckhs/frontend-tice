@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AsociacionService } from './asociacion.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,12 +23,12 @@ export class ListsService {
     {value:4, name:'Mariscal Santa Cruz'}
   ];
 
-  sindicatos:any[]=[
-    {value:1, name:'Taxis Montero'},
-    {value:2, name:'24 de Septiembre'},
-    {value:3, name:'Estrella del norte'},
-    {value:4, name:'Radiotaxis Cruz del Sur'}
-  ];
+  // sindicatos:any[]=[
+  //   {value:1, name:'Taxis Montero'},
+  //   {value:2, name:'24 de Septiembre'},
+  //   {value:3, name:'Estrella del norte'},
+  //   {value:4, name:'Radiotaxis Cruz del Sur'}
+  // ];
 
   tservicios: any[] = [
     {value:1, name:'Bus Escolar'},
@@ -45,7 +46,19 @@ export class ListsService {
     {value:'ab-', name:'AB-'},
   ];
 
-  constructor() { }
+  categorias:string[] = [
+    'A',
+    'B',
+    'C',
+    'M',
+    'P',
+    'T'
+  ]
+
+  constructor() { 
+
+  }
+
 
 
 }

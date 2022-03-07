@@ -24,21 +24,26 @@ export class UsuarioService {
 
   constructor( private http: HttpClient, 
                 private router: Router,
-                private ngZone: NgZone ) {
+                private ngZone: NgZone,
+                //private headers:HttpHeaders
+                ) {
   }
 
-
-
   logout() {
+    // localStorage.removeItem('token');
+
+    // this.auth2.signOut().then(() => {
+
+    //   this.ngZone.run(() => {
+    //     this.router.navigateByUrl('/');
+    //   })
+    // });
+    //let token = localStorage.getItem('token');
+    //let url = `${base_url}/Users/logout?access_token=${token}`;
+    //localStorage.removeItem('currentUser');
     localStorage.removeItem('token');
-
-    this.auth2.signOut().then(() => {
-
-      this.ngZone.run(() => {
-        this.router.navigateByUrl('/login');
-      })
-    });
-
+    this.router.navigateByUrl('/login');
+    //return this.http.post(url, {headers:this.headers});
   }
 
   validarToken(): Observable<boolean> {
@@ -72,10 +77,10 @@ export class UsuarioService {
 
   login( formData: LoginForm ) {
     
-    return this.http.post(`${ base_url }/login`, formData )
+    return this.http.post(`${ base_url }/Users/login?include=user`, formData )
                 .pipe(
                   tap( (resp: any) => {
-                    localStorage.setItem('token', resp.token )
+                    localStorage.setItem('token', resp.id )
                   })
                 );
 

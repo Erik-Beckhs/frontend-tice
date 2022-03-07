@@ -10,6 +10,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatIconModule} from '@angular/material/icon';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { HttpClientModule } from '@angular/common/http';
 
 // Modulos
 import { SharedModule } from '../shared/shared.module';
@@ -37,6 +38,7 @@ import { HabilitarComponent } from './habilitar/habilitar.component';
 import { ProfileComponent } from './profile/profile.component';
 
 import { EmptyImgPipe } from '../pipes/empty-img.pipe';
+import { SindicatosListComponent } from './sindicatos-list/sindicatos-list.component';
 
 
 @NgModule({
@@ -58,7 +60,8 @@ import { EmptyImgPipe } from '../pipes/empty-img.pipe';
     MovilidadAsocComponent,
     HabilitarComponent,
     ProfileComponent,
-    EmptyImgPipe
+    EmptyImgPipe,
+    SindicatosListComponent
   ],
   exports: [
     DashboardComponent,
@@ -87,7 +90,8 @@ import { EmptyImgPipe } from '../pipes/empty-img.pipe';
     MatPaginatorModule,
     MatIconModule,
     NgxQRCodeModule, 
-    MatCardModule
+    MatCardModule,
+    HttpClientModule
   ]
 })
 export class PagesModule { }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario.service';
 import Swal from 'sweetalert2';
+import swal  from 'sweetalert';
 
 declare const gapi:any;
 
@@ -12,6 +13,11 @@ declare const gapi:any;
   styleUrls: [ './login.component.css' ]
 })
 export class LoginComponent implements OnInit {
+
+  usuario:any={
+    email:'',
+    password:''
+  }
 
   public formSubmitted = false;
   public auth2: any;
@@ -45,11 +51,12 @@ export class LoginComponent implements OnInit {
         }
 
         // Navegar al Dashboard
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/dashboard');
 
       }, (err) => {
         // Si sucede un error
-        Swal.fire('Error', err.error.msg, 'error' );
+        //Swal.fire('Error', err.error.msg, 'error' );
+        swal("Direccion Nacional de Transito", "Error, credenciales no validas", "error");
       });
 
   }
