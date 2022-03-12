@@ -36,14 +36,14 @@ export class ListsService {
   ];
   
   tsangre:any[] = [
-    {value:'a+', name:'A+'},
-    {value:'o+', name:'O+'},
-    {value:'b+', name:'B+'},
-    {value:'ab+', name:'AB+'},
-    {value:'a-', name:'A-'},
-    {value:'o-', name:'O-'},
-    {value:'b-', name:'B-'},
-    {value:'ab-', name:'AB-'},
+    {value:'A+', name:'A+'},
+    {value:'O+', name:'O+'},
+    {value:'B+', name:'B+'},
+    {value:'AB+', name:'AB+'},
+    {value:'A-', name:'A-'},
+    {value:'O-', name:'O-'},
+    {value:'B-', name:'B-'},
+    {value:'AB-', name:'AB-'},
   ];
 
   categorias:string[] = [

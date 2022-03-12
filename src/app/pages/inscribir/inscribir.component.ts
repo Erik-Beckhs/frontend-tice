@@ -26,6 +26,9 @@ export class InscribirComponent implements OnInit {
   elementType = 'url';
   value:any;
 
+  driver:any;
+  vehicle:any;
+
   // firstFormGroup: FormGroup;
   // secondFormGroup: FormGroup;
 
@@ -37,6 +40,11 @@ export class InscribirComponent implements OnInit {
   fileVehicle:any;
 
   finscripcion:any = new Date();
+
+  today:any = new Date();
+  hoy:any;
+  fini:any;
+  ffin:any;
 
   //listas
   expediciones:any;
@@ -86,8 +94,8 @@ export class InscribirComponent implements OnInit {
 
   card:boolean = false;
 
-  hoy = Date.now(); 
-  today:any = '';
+  //hoy = Date.now(); 
+  //today:any = '';
 
   @ViewChild('stepper') stepper: MatStepper;
   
@@ -103,10 +111,15 @@ export class InscribirComponent implements OnInit {
       this.tservicios=this._list.tservicios;
       this.tiposangre = this._list.tsangre;
       this.categorias = this._list.categorias;
-      this.today = moment(this.hoy).format("DD/MM/YYYY hh:mm A");
+
+      this.fechaActual();
+
+      //this.today = moment(this.hoy).format("DD/MM/YYYY hh:mm A");
       this.generaCodigoConductor();
       //this.sindicatos = this._sindicato.getAsociaciones();
       this.loadSindicatos();
+    //this.today2 = new Date();
+    //console.log(this.today2);
     }
 
   ngOnInit(): void {
@@ -129,6 +142,20 @@ export class InscribirComponent implements OnInit {
   updateImage(){
 
   }
+
+  fechaActual(){
+    this.hoy = `${this.today.getDate()}/${this.today.getMonth() + 1}/${this.today.getFullYear()}`;
+    this.fini = this.hoy;
+    this.ffin = `${this.today.getDate()}/${this.today.getMonth() + 1}/${this.today.getFullYear() + 1}`;
+    //this.fin = 
+  }
+
+  // fechaProximoAnio(){
+    //let nextYear
+    // let aux = this.today.setFullYear(this.today.getFullYear + 1);
+    // let fproximo = new Date(aux);
+    // this.ffin = `${fproximo.getDate()}/${fproximo.getMonth()+1}/${fproximo.getFullYear()}`;
+  // }
 
   loadSindicatos(){
     this._sindicato.getAsociaciones().subscribe((res:any)=>{
@@ -191,19 +218,21 @@ export class InscribirComponent implements OnInit {
 
   genera(datosConductor:any, datosVehiculo:any){
     //console.log('conductor');
-    let driver = datosConductor.value;
-    driver.img = this.imageTempUser;
+    this.driver = datosConductor.value;
+    this.driver.img = this.imageTempUser;
 
-    let vehicle = datosVehiculo.value;
-    vehicle.img = this.imageTempVehicle;
+    this.vehicle = datosVehiculo.value;
+    this.vehicle.img = this.imageTempVehicle;
 
-    this._conductor.registraConductor(driver).subscribe((data:any)=>
+    //this.fechaProximoAnio();
+
+    this._conductor.registraConductor(this.driver).subscribe((data:any)=>
       {
         console.log('Se registró al conductor');
 
-        vehicle.id_conductor = data.id;
+        this.vehicle.id_conductor = data.id;
 
-        this._vehiculo.guardarVehiculo(vehicle).subscribe(dataV=>{
+        this._vehiculo.guardarVehiculo(this.vehicle).subscribe(dataV=>{
           console.log('Se registró el vehiculo');
            swal("Dirección Nacional de Tránsito", "Se registró su información", "success").then(()=>{
               this.mostrarTarjeta();
@@ -225,13 +254,16 @@ export class InscribirComponent implements OnInit {
   }
 
   mostrarTarjeta(){
+
     this.card = true;
               this.value = `
                   DIRECCION DE TRANSITO SANTA CRUZ
-                  Nombre: ${this.conductor.nombre} ${this.conductor.apellidos} 
-                  Tipo de Sangre: ${this.conductor.tsangre}
-                  Licencia: ${this.conductor.licencia}
-                  Categoria: ${this.conductor.categoria}
+                  Nombre: ${this.driver.nombre} ${this.driver.apellidos} 
+                  Tipo de Sangre: ${this.driver.tsangre}
+                  Licencia: ${this.driver.licencia}
+                  Categoria: ${this.driver.categoria}
+                  placa: ${this.vehicle.placa}
+                  VALIDO DEL ${this.fini} AL ${this.ffin} 
               `
             ;
   }

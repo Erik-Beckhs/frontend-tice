@@ -11,6 +11,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatIconModule} from '@angular/material/icon';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { HttpClientModule } from '@angular/common/http';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 // Modulos
 import { SharedModule } from '../shared/shared.module';
@@ -37,7 +38,6 @@ import { MovilidadAsocComponent } from './movilidad-asoc/movilidad-asoc.componen
 import { HabilitarComponent } from './habilitar/habilitar.component';
 import { ProfileComponent } from './profile/profile.component';
 
-import { EmptyImgPipe } from '../pipes/empty-img.pipe';
 import { SindicatosListComponent } from './sindicatos-list/sindicatos-list.component';
 
 
@@ -60,7 +60,6 @@ import { SindicatosListComponent } from './sindicatos-list/sindicatos-list.compo
     MovilidadAsocComponent,
     HabilitarComponent,
     ProfileComponent,
-    EmptyImgPipe,
     SindicatosListComponent
   ],
   exports: [
@@ -73,7 +72,6 @@ import { SindicatosListComponent } from './sindicatos-list/sindicatos-list.compo
     MovilidadAsocComponent,
     HabilitarComponent,
     ProfileComponent,
-    EmptyImgPipe
   ],
   imports: [ 
     CommonModule,
@@ -91,7 +89,8 @@ import { SindicatosListComponent } from './sindicatos-list/sindicatos-list.compo
     MatIconModule,
     NgxQRCodeModule, 
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    PipesModule
   ]
 })
 export class PagesModule { }

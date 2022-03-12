@@ -145,7 +145,7 @@
                               <div class="col-6">
                                <div class="form-group">
                                   <label for="finscripcion">Fecha de Inscripción</label>
-                                  <input readonly type="text" [value]="today" class="form-control" name="finscripcion"  id="finscripcion" >
+                                  <input readonly type="text" [value]="hoy" class="form-control" name="finscripcion"  id="finscripcion" >
                               </div>
                               </div>
                               <div class="col-6">
@@ -366,40 +366,40 @@
                             <div class="d-flex justify-content-center">
                               <img [src]="imageTempUser" alt="" class="w-200">
                             </div>
-                            <p class="text-center fs-17">{{conductor.ci}} {{conductor.lugar}}</p>
+                            <p class="text-center fs-17">{{driver.ci}} {{driver.lugar}}</p>
                          </div>
                        </div>
                        <div class="col-8">
                           <div id="datos-tarjeta p-3">
                             <p > 
-                              <span class="fw-bold"> Nombres:</span> 
+                              <span class="fw-bold">Nombres: </span> 
                               <span>{{conductor.nombre}} </span>
                             </p>
                             <p > 
-                              <span class="fw-bold"> Apellidos:</span> 
+                              <span class="fw-bold">Apellidos: </span> 
                               <span>{{conductor.apellidos}} </span>
                             </p>
                             <p > 
-                              <span class="fw-bold"> Tipo de Sangre:</span> 
-                              <span>{{conductor.tsangre}} </span>
+                              <span class="fw-bold">Tipo de Sangre: </span> 
+                              <span>{{driver.tsangre | uppercase}} </span>
                             </p>
                             <p > 
                               <span class="fw-bold"> Licencia:</span> 
                               <span>{{conductor.licencia}} </span>
-                              <span class="fw-bold ml-4"> Categoria:</span> 
-                              <span>{{conductor.categoria}} </span>
+                              <span class="fw-bold ml-4">Categoria: </span> 
+                              <span>{{driver.categoria | uppercase}} </span>
                             </p>
                             <p>
-                              <span class="fw-bold"> Unidad Educativa:</span> 
-                              <span>{{conductor.ueducativa}} </span>
+                              <span class="fw-bold">Unidad Educativa: </span> 
+                              <span>{{driver.ueducativa | ueducativas}}</span>
                             </p>
                             <p>
-                              <span class="fw-bold"> Tipo de Servicio</span> 
-                              <span>{{vehiculo.tservicio}} </span>
+                              <span class="fw-bold">Tipo de Servicio: </span> 
+                              <span>{{driver.tipo}}</span>
                             </p>
                             <br>
                           </div>
-                          <p class="fw-bold fs-20 text-center">VALIDO DEL 27/08/2022 AL 27/02/2023</p>
+                          <p class="fw-bold fs-20 text-center">VALIDO DEL {{fini}} AL {{ffin}}</p>
                        </div>
                     </div>
                    </div>
