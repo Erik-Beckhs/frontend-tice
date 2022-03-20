@@ -47,8 +47,8 @@
                                   <div class="col-6">
                                     <div class="form-group">
                                       <label for="lugar">Lugar de Expedición</label>
-                                      <select name="lugar" id="lugar" class="form-control" ngModel>
-                                        <option value="" disabled>Elija una opciòn</option>
+                                      <select required name="lugar" id="lugar" class="form-control" ngModel>
+                                        <option value="" disabled>Elija una opción</option>
                                         <option *ngFor="let item of expediciones" [ngValue]="item.valor">{{item.valor}}</option>
                                       </select>
                                     </div>
@@ -56,23 +56,23 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="nombre">Nombres</label>
-                                    <input type="text" class="form-control" [(ngModel)]="conductor.nombre" name="nombre"  id="nombre" placeholder="Nombres">
+                                    <input required type="text" class="form-control" [(ngModel)]="conductor.nombre" name="nombre"  id="nombre" placeholder="Nombres">
                                 </div>
                                 <div class="form-group">
                                     <label for="apellidos">Apellidos</label>
-                                    <input type="text" class="form-control" [(ngModel)]="conductor.apellidos" name="apellidos"  id="apellidos" placeholder="Apeliidos">
+                                    <input required type="text" class="form-control" [(ngModel)]="conductor.apellidos" name="apellidos"  id="apellidos" placeholder="Apeliidos">
                                 </div>
                                 <div class="row">
                                   <div class="col-6">
                                     <div class="form-group">
                                       <label for="fnac">Fecha de Nacimiento</label>
-                                      <input type="date" class="form-control" [(ngModel)]="conductor.fnac" name ="fnac"  id="fnac" >
+                                      <input required type="date" class="form-control" [(ngModel)]="conductor.fnac" name ="fnac"  id="fnac" >
                                   </div>
                                   </div>
                                   <div class="col-6">
                                     <div class="form-group">
                                       <label for="tsangre">Tipo de Sangre</label>
-                                      <select name="tsangre" id="tsangre" class="form-control" ngModel>
+                                      <select required name="tsangre" id="tsangre" class="form-control" ngModel>
                                         <option value="" disabled>Elija una opciòn</option>
                                         <option *ngFor="let item of tiposangre" [ngValue]="item.value">{{item.name}}</option>
                                       </select>
@@ -89,7 +89,7 @@
                               </div>-->
                             <div class="form-group">
                               <label for="direccion">Dirección</label>
-                              <input type="text" class="form-control" [(ngModel)]="conductor.direccion" name="direccion"  id="direccion" placeholder="Dirección">
+                              <input required type="text" class="form-control" [(ngModel)]="conductor.direccion" name="direccion"  id="direccion" placeholder="Dirección">
                             </div>
                              <div class="d-flex justify-content-end">
                                 <!--<button type="submit" class="form-control" mat-raised-button color="primary"><i class="fa fa-save"></i> Guardar</button>
@@ -125,20 +125,20 @@
                       <div class="mt-2">
                         <div class="form-group">
                           <label for="licencia">Licencia de Conducir</label>
-                          <input type="text" class="form-control" [(ngModel)]="conductor.licencia" name="licencia"  id="licencia" placeholder="Licencia de conducir">
+                          <input required type="text" class="form-control" [(ngModel)]="conductor.licencia" name="licencia"  id="licencia" placeholder="Licencia de conducir">
                         </div>
                         <div class="form-group">
                           <label for="sindicato">Sindicato</label>
-                          <select class="form-control" name="sindicato" id="sindicato"ngModel>
+                          <select required class="form-control" name="sindicato" id="sindicato"ngModel>
                             <option value="" disabled>Elija una opciòn</option>
                             <option *ngFor="let item of sindicatos" [ngValue]="item.id">{{item.nombre}}</option>
                           </select>
                         </div>
                         <div class="form-group">
                           <label for="ueducativa">Unidad Educativa</label>
-                          <select class="form-control" ngModel name="ueducativa" id="ueducativa">
+                          <select required class="form-control" ngModel name="ueducativa" id="ueducativa">
                             <option value="" disabled>Elija una opciòn</option>
-                            <option *ngFor="let item of ueducativas" [ngValue]="item.value">{{item.name}}</option>
+                            <option *ngFor="let item of ueducativas" [ngValue]="item.id">{{item.nombre}}</option>
                           </select>
                         </div>
                         <div class="row">
@@ -151,7 +151,7 @@
                               <div class="col-6">
                                 <div class="form-group">
                                   <label for="categoriacond">Categoria</label>
-                                  <select name="categoria" id="categoria" class="form-control" ngModel>
+                                  <select required name="categoria" id="categoria" class="form-control" ngModel>
                                     <option value="" disabled>Elija una opciòn</option>
                                     <option *ngFor="let item of categorias" [ngValue]="item">{{item}}</option>
                                   </select>
@@ -166,8 +166,9 @@
             </div>
 
             <div class="d-flex justify-content-end">
-              <button mat-raised-button (click)="goVehiculo()" color="primary"> Siguiente <i class="fa fa-forward"></i></button>
+              <button mat-raised-button (click)="next1()" [disabled]="fConductor.invalid" color="primary"> Siguiente <i class="fa fa-forward"></i></button>
             </div>
+
           </form>
         </mat-step>
         <mat-step>
@@ -194,13 +195,13 @@
                         <div class="col-6">
                           <div class="form-group">
                             <label for="exampleInputEmail1">Código de Vehículo</label>
-                            <input type="text" class="form-control" [(ngModel)]="vehiculo.codigo" name="codigo" id="exampleInputEmail1" placeholder="Código de Vehículo">
+                            <input required type="text" class="form-control" [(ngModel)]="vehiculo.codigo" name="codigo" id="exampleInputEmail1" placeholder="Código de Vehículo">
                           </div>
                         </div>
                         <div class="col-6">
                           <div class="form-group">
                             <label for="exampleInputEmail1">Número de Placa</label>
-                            <input type="text" class="form-control" [(ngModel)]="vehiculo.placa" name="placa" id="exampleInputEmail1" placeholder="Número de Placa">
+                            <input required type="text" class="form-control" [(ngModel)]="vehiculo.placa" name="placa" id="exampleInputEmail1" placeholder="Número de Placa">
                         </div>
                       </div>
                       </div>
@@ -208,28 +209,34 @@
                           <div class="col-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Póliza</label>
-                                <input type="text" [(ngModel)]="vehiculo.poliza" name="poliza" class="form-control" id="exampleInputEmail1" placeholder="Poliza">
+                                <input required type="text" [(ngModel)]="vehiculo.poliza" name="poliza" class="form-control" id="exampleInputEmail1" placeholder="Poliza">
                             </div>
                           </div>
                           <div class="col-6">
                             <div class="form-group">
-                              <label for="exampleInputEmail1">Procedencia</label>
-                              <input type="text" class="form-control" [(ngModel)]="vehiculo.procedencia" name="procedencia" id="" placeholder="Procedencia">
-                          </div>
+                              <label for="procedencia">Procedencia</label>
+                              <select required name="procedencia" id="procedencia" class="form-control" ngModel>
+                                <option value="" disabled>Elija una opción</option>
+                                <option *ngFor="let item of pais" [ngValue]="item">{{item}}</option>
+                              </select>
+                            </div>
                           </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
                               <div class="form-group">
                                 <label for="exampleInputEmail1">Chasis</label>
-                                <input type="text" class="form-control" [(ngModel)]="vehiculo.chasis" name="chasis"  id="" placeholder="Chasis">
+                                <input required type="text" class="form-control" [(ngModel)]="vehiculo.chasis" name="chasis"  id="" placeholder="Chasis">
                             </div>
                             </div>
                             <div class="col-6">
                               <div class="form-group">
-                                <label for="exampleInputEmail1">Color</label>
-                                <input type="text" class="form-control" [(ngModel)]="vehiculo.color" name="color" id="exampleInputEmail1" placeholder="Color">
-                            </div>
+                                <label for="color">Color</label>
+                                <select required name="color" id="color" class="form-control" ngModel>
+                                  <option value="" disabled>Elija una opción</option>
+                                  <option *ngFor="let item of colores" [ngValue]="item">{{item}}</option>
+                                </select>
+                              </div>
                             </div>
                         </div>
                         <!--<div class="form-group">
@@ -254,16 +261,16 @@
                           <div class="col-6">
                             <div class="form-group">
                               <label for="tipo">Tipo de Servicio</label>
-                              <select name="tipo" id="tipo" class="form-control" ngModel>
+                              <select required name="tipo" id="tipo" class="form-control" ngModel>
                                 <option value="" disabled>Elija una opciòn</option>
-                                <option *ngFor="let item of tservicios" [ngValue]="item.value">{{item.name}}</option>
+                                <option *ngFor="let item of tservicios" [ngValue]="item">{{item}}</option>
                               </select>
                             </div>
                           </div>
                           <div class="col-6">
                             <div class="form-group">
-                                <label for="cilindrada">Cilndrada</label>
-                                <input type="text" [(ngModel)]="vehiculo.cilindrada" name="cilindrada" class="form-control" id="cilindrada" placeholder="Cilindrada">
+                                <label for="cilindrada">Cilindrada</label>
+                                <input type="number" [(ngModel)]="vehiculo.cilindrada" name="cilindrada" class="form-control" id="cilindrada" placeholder="Cilindrada">
                             </div>
                           </div>
                         </div>
@@ -292,13 +299,13 @@
                 <div class="col-6">
                   <div class="form-group">
                     <label for="marca">Marca</label>
-                    <input type="text" class="form-control" [(ngModel)]="vehiculo.marca" name="marca" id="marca" placeholder="Marca">
+                    <input required type="text" class="form-control" [(ngModel)]="vehiculo.marca" name="marca" id="marca" placeholder="Marca">
                 </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group">
                     <label for="modelo">Modelo</label>
-                    <input type="text" class="form-control" [(ngModel)]="vehiculo.modelo" name="modelo" id="modelo" placeholder="Modelo">
+                    <input required type="text" class="form-control" [(ngModel)]="vehiculo.modelo" name="modelo" id="modelo" placeholder="Modelo">
                 </div>
                 </div>
             </div> 
@@ -312,7 +319,7 @@
 
             <div class="d-flex justify-content-between">
               <button mat-raised-button color="primary" matStepperPrevious><i class="fa fa-backward"></i> Anterior</button>
-              <button mat-raised-button color="primary" matStepperNext>Siguiente <i class="fa fa-forward"></i></button>
+              <button mat-raised-button color="primary" [disabled]="fVehiculo.invalid" (click)="verificarVehiculo(fVehiculo.value)">Siguiente <i class="fa fa-forward"></i></button>
             </div>
         </mat-step>
         <mat-step>
@@ -320,10 +327,11 @@
 
           <div>
             <div class="d-flex justify-content-center">
-              <button mat-raised-button color="accent" (click)="genera(fConductor, fVehiculo)"><i class="fa fa-save"></i> Guardar y Generar Tarjeta</button>
+              <button mat-raised-button color="accent" (click)="genera(fConductor, fVehiculo)"><i class="fa fa-save"></i> Generar Tarjeta</button>
             </div>
-            <form ngNativeValidate>
-              <div *ngIf="card bg-white mx-5">
+            
+              <div *ngIf="card" class="bg-white mx-5">
+                <form ngNativeValidate id="formulario">
                 <mat-card>
                   <div class="card">
                     <div class="card-header " >
@@ -395,7 +403,7 @@
                             </p>
                             <p>
                               <span class="fw-bold">Tipo de Servicio: </span> 
-                              <span>{{driver.tipo}}</span>
+                              <span>{{vehicle.tipo}}</span>
                             </p>
                             <br>
                           </div>
@@ -405,18 +413,22 @@
                    </div>
                   </div>
                  </mat-card>
+                </form>
+
+                 <div class="d-flex justify-content-end mt-3">
+                  <button mat-raised-button color="warn" class="mx-1"(click)="registrar()" ><i class="fa fa-save"></i> {{idConductor?'Actualizar':'Registrar'}} </button>
+                  <button mat-raised-button (click)="imprimir()" color="warn" [disabled]="!registrado" ><i class="fa fa-print"></i> Imprimir</button>
+                  <button mat-raised-button color="warn" class="mx-1"><i class="fa fa-plus"></i> Nuevo</button>
+                  <button mat-raised-button color="warn" [routerLink]="['/dashboard/consultar']"><i class="fa fa-users"></i> Lista de Conductores</button>
+                </div>
+
               </div>
-            </form>
+         
             
           </div>
 
-          <div class="d-flex justify-content-between mt-4">
-            <button mat-raised-button matStepperPrevious color="primary"><i class="fa fa-backward"></i> Anterior </button>
-            <div>
-              <button mat-raised-button color="warn" ><i class="fa fa-print"></i> Imprimir</button>
-              <button mat-raised-button color="warn" class="mx-1"><i class="fa fa-plus"></i> Registrar Nuevo</button>
-              <button mat-raised-button color="warn" [routerLink]="['/dashboard/consultar']"><i class="fa fa-users"></i> Lista de Conductores</button>
-            </div>
+          <div class="d-flex justify-content-start mt-4">
+            <button mat-raised-button (click)="anteriorTice()" color="primary"><i class="fa fa-backward"></i> Anterior </button>
 
             <!--<button mat-button color="primary" (click)="stepper.reset()">Reset</button>-->
           </div>

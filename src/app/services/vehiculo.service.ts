@@ -17,4 +17,19 @@ export class VehiculoService {
     let url = `${base_url}/vehiculos`;
     return this.http.post(url, vehiculo);
   }
+
+  modificaVehiculo(vehiculo:any, idVehiculo){
+    let url = `${base_url}/api/vehiculos/${idVehiculo}`;
+    return this.http.patch(url, vehiculo);
+  }
+
+  countPlaca(placa:string){
+    let url = `${base_url}/vehiculos/count?where={"placa":"${placa}"}`;
+    return this.http.get(url);
+  }
+
+  countChasis(chasis:string){
+    let url = `${base_url}/vehiculos/count?where={"chasis":"${chasis}"}`;
+    return this.http.get(url);
+  }
 }

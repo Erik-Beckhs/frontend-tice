@@ -8,6 +8,7 @@ import { PagesComponent } from './pages.component';
 // import { ProgressComponent } from './progress/progress.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
 // import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { UeducativaComponent } from './ueducativa/ueducativa.component';
 // import { PromesasComponent } from './promesas/promesas.component';
 // import { RxjsComponent } from './rxjs/rxjs.component';
 import { PrincipalComponent } from './principal/principal.component';
@@ -22,6 +23,7 @@ import { HabilitarComponent } from './habilitar/habilitar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SindicatosListComponent } from './sindicatos-list/sindicatos-list.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { UeducativasComponent } from './ueducativas/ueducativas.component';
 
 const routes: Routes = [
     { 
@@ -37,7 +39,9 @@ const routes: Routes = [
             { path: 'listas', component: ListasComponent, data: { titulo: 'Listas' }},
             { path: 'estadisticas', component: EstadisticasComponent, data: { titulo: 'Estadisticas' }},
             { path: 'asociacion', component: AsociacionComponent, data: { titulo: 'Asociacion' }},
-            { path: 'sindicatos', component: SindicatosListComponent, data: { titulo: 'Sindicatos' }},
+            { path: 'sindicatos', component: SindicatosListComponent, data: { titulo: 'Lista de Sindicatos' }},
+            { path: 'ueducativa', component: UeducativaComponent, data: { titulo: 'Unidad Educativa' }},
+            { path: 'ueducativas', component: UeducativasComponent, data: { titulo: 'Lista de Unidades Educativas' }},
             { path: 'movilidad-asoc', component: MovilidadAsocComponent, data: { titulo: 'Asociaciones y Movilidades' }},
             { path: 'habilitar', component: HabilitarComponent, data: { titulo: 'Habilitar / Deshabilitar Usuarios' }},
             { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Temas' }}

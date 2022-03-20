@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AsociacionService } from '../../services/asociacion.service';
 
 import swal from 'sweetalert';
+import { ListsService } from '../../services/lists.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-asociacion',
   templateUrl: './asociacion.component.html',
@@ -22,12 +25,19 @@ export class AsociacionComponent implements OnInit {
     img:''
   }
 
-  constructor(private _asociacion:AsociacionService) { }
+  ciudades:string[]=[];
+
+  constructor(
+    private _asociacion:AsociacionService,
+    private _list:ListsService,
+    private router:Router
+    ) { 
+    this.ciudades = this._list.ciudades; 
+  }
 
   ngOnInit(): void {
     
   }
-
 
   onFileChange(event:any) {
     this.file=event.target.files[0]
@@ -64,14 +74,13 @@ export class AsociacionComponent implements OnInit {
       img:this.imageTemp
     }
 
-    console.log(archivo.img);
-    debugger;
-
     //let idSupplier:any = this.supplier.id;
     this._asociacion.updateImage(this.asociacion.id, archivo)
     .subscribe(()=>{
       //setear localstorage
-      swal("Dirección Nacional de Tránsito", "Se subiò su imagen de manera correcta", "success");
+      swal("Dirección Nacional de Tránsito", "Se subió su imagen de manera correcta", "success").then(()=>{
+          this.router.navigate(['/dashboard/sindicatos'])
+      });
     })
   }
 
@@ -83,8 +92,7 @@ export class AsociacionComponent implements OnInit {
     this._asociacion.saveAsoc(asociacion).subscribe((res:any)=>{
       this.asociacion.id = res.id;
       swal("Direccion Nacional de Transito", "Se registrò su asociacion de manera correcta", "success");
-    })
-    
+    })    
     //TODO: verificar si ya existe el nombre de proveedor
     // supplier.id=this._generateID.generateID();
     // supplier.idContact=this.contact.id;

@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { VehiculoComponent } from './vehiculo/vehiculo.component';
 import { PropietarioComponent } from './propietario/propietario.component';
+import { BarChartComponent } from './graficos/bar-chart/bar-chart.component';
 
 
 
@@ -21,14 +22,16 @@ import { PropietarioComponent } from './propietario/propietario.component';
     DonaComponent,
     PersonaComponent,
     VehiculoComponent,
-    PropietarioComponent
+    PropietarioComponent,
+    BarChartComponent
   ],
   exports: [
     IncrementadorComponent,
     DonaComponent,
     PersonaComponent,
     VehiculoComponent,
-    PropietarioComponent
+    PropietarioComponent,
+    BarChartComponent
   ],
   imports: [
     CommonModule,

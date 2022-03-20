@@ -11,9 +11,9 @@ export class SidebarService {
       icono: 'mdi mdi-gauge',
       submenu: [
         //{ titulo: 'Principal', url: '/' },
-        { titulo: 'Inscribir', url: '/dashboard/inscribir' },
+        { titulo: 'Conductor', url: '/dashboard/inscribir' },
         { titulo: 'Sindicato', url: '/dashboard/asociacion' },
-        { titulo: 'Consultar', url: '/dashboard/consultar' },
+        { titulo: 'Unidad Educativa', url: '/dashboard/ueducativa' },
         //{ titulo: 'Acerca de', url: '/dashboard/about' },
         { titulo: 'Estadisticas', url: '/dashboard/estadisticas' }
         // { titulo: 'Principal', url: '/' },
@@ -27,7 +27,9 @@ export class SidebarService {
       titulo: 'Listas',
       icono: 'mdi mdi-format-list-bulleted-type',
       submenu: [
+        { titulo: 'Conductores', url: '/dashboard/consultar' },
         { titulo: 'Sindicatos', url: '/dashboard/sindicatos' },
+        { titulo: 'Unidades Educativas', url: '/dashboard/ueducativas' },
         //{ titulo: 'Movilidad / asociacion', url: '/dashboard/movilidad-asoc' },
         { titulo: 'Habilitar / Deshabilitar', url: '/dashboard/habilitar' },
         { titulo: 'Salir', url: '/login'}

@@ -1,7 +1,10 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import { ListsService } from 'src/app/services/lists.service';
-import * as moment from 'moment';
+//import * as moment from 'moment';
+
+import * as printJS from 'print-js';
+
 import { MatStepper } from '@angular/material/stepper';
 
 //declare var swal:any
@@ -10,6 +13,7 @@ import swal from 'sweetalert';
 import { AsociacionService } from 'src/app/services/asociacion.service';
 import { ConductorService } from 'src/app/services/conductor.service';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
+import { UeducativaService } from '../../services/ueducativa.service';
 
 @Component({
   selector: 'app-inscribir',
@@ -28,6 +32,11 @@ export class InscribirComponent implements OnInit {
 
   driver:any;
   vehicle:any;
+
+  idConductor:any;
+  idVehiculo:any;
+
+  registrado:boolean=false;
 
   // firstFormGroup: FormGroup;
   // secondFormGroup: FormGroup;
@@ -53,6 +62,8 @@ export class InscribirComponent implements OnInit {
   tservicios:any;
   tiposangre:any;
   categorias:string[];
+  colores:string[]=[];
+  pais:string[]=[];
 
   // conductor:ConductorInterface = {
   //   nombre:'Juan Carlos',
@@ -104,13 +115,18 @@ export class InscribirComponent implements OnInit {
     private _list:ListsService,
     private _sindicato:AsociacionService,
     private _conductor:ConductorService,
-    private _vehiculo:VehiculoService
+    private _vehiculo:VehiculoService,
+    private _ueducativa:UeducativaService
     ) {
       this.expediciones=this._list.expediciones;
+      
       this.ueducativas=this._list.ueducativas;
+
       this.tservicios=this._list.tservicios;
       this.tiposangre = this._list.tsangre;
       this.categorias = this._list.categorias;
+      this.colores = this._list.colores;
+      this.pais = this._list.pais.sort();
 
       this.fechaActual();
 
@@ -118,6 +134,7 @@ export class InscribirComponent implements OnInit {
       this.generaCodigoConductor();
       //this.sindicatos = this._sindicato.getAsociaciones();
       this.loadSindicatos();
+      this.loadUEducativas();
     //this.today2 = new Date();
     //console.log(this.today2);
     }
@@ -133,6 +150,12 @@ export class InscribirComponent implements OnInit {
     setTimeout(()=>{
       this.tamQR()
     }, 1000);
+  }
+
+  loadUEducativas(){
+    this._ueducativa.getUEducativas().subscribe(data=>{
+      this.ueducativas = data;
+    })
   }
 
   /*ngAfterViewInit(): void {
@@ -187,6 +210,10 @@ export class InscribirComponent implements OnInit {
     }
   }
 
+  imprimir(){
+    printJS('formulario', 'html');
+  }
+
   onFileChangeVehicle(event:any) {
     this.fileVehicle=event.target.files[0];
     if(!event){
@@ -224,22 +251,8 @@ export class InscribirComponent implements OnInit {
     this.vehicle = datosVehiculo.value;
     this.vehicle.img = this.imageTempVehicle;
 
+    this.mostrarTarjeta();
     //this.fechaProximoAnio();
-
-    this._conductor.registraConductor(this.driver).subscribe((data:any)=>
-      {
-        console.log('Se registró al conductor');
-
-        this.vehicle.id_conductor = data.id;
-
-        this._vehiculo.guardarVehiculo(this.vehicle).subscribe(dataV=>{
-          console.log('Se registró el vehiculo');
-           swal("Dirección Nacional de Tránsito", "Se registró su información", "success").then(()=>{
-              this.mostrarTarjeta();
-           })
-        })
-        
-      })
 
     //this.registraConductor(driver);
     //console.log(driver);
@@ -268,20 +281,100 @@ export class InscribirComponent implements OnInit {
             ;
   }
 
+  registrar(){
+    //activar boton imprimir
+    if(this.idConductor){
+      //TODO
+      //actualizar
+      this._conductor.modificaConductor(this.driver, this.idConductor).subscribe(()=>{
+        this._vehiculo.modificaVehiculo(this.vehicle, this.idVehiculo).subscribe(()=>{
+          swal('Direccion Nacional de Tránsito', 'Se modificó su información de manera correcta', 'success');
+          this.registrado = true;
+        });
+      });
+      
+    }
+    else{
+      
+      this._conductor.registraConductor(this.driver).subscribe((data:any)=>
+      {
+        console.log('Se registró al conductor');
+  
+        this.vehicle.id_conductor = data.id;
+  
+        this._vehiculo.guardarVehiculo(this.vehicle).subscribe((dataV:any)=>{
+          console.log('Se registró el vehiculo');
+           swal("Dirección Nacional de Tránsito", "Se registró su información", "success").then(()=>{
+             this.registrado = true;
+             this.idConductor = data.id;
+             this.idVehiculo = dataV.id;
+             //console.log(data);
+           })
+        })
+        
+      })
+      }
+  }
+
+anteriorTice(){
+  this.card = false;
+  this.registrado = false;
+  this.stepper.previous();
+}
+
   // registraConductor(conductor:any){
     
   // }
 
-  goVehiculo(){
+  next1(){
     //this.completeConductor=true;
-    if(this.conductor.ci !== null || this.conductor.ci > 0){
+    if(this.imageTempUser){
       //this.completeConductor=true;
       this.stepper.next();
     }
     else{
-      swal('Direccion Nal. de Transito', 'Llene los campos obligatorios', 'warning');
+      swal('Direccion Nal. de Transito', 'Debe subir la imagen del conductor', 'warning');
     }
     
+  }
+
+  next2(valor:any){
+    //TODO: verificar si existe el codigo, placa y chasis
+    //let verifica = this.verificarVehicle(vehiculo);
+
+    switch(valor){
+      case 1:
+        if(this.imageTempVehicle){
+          this.stepper.next();
+        }
+        else{
+          swal('Direccion Nal. de Transito', 'Debe subir la imagen del vehículo', 'warning');
+        }
+      break;
+      case 2:
+        swal('Dirección Nacional de Tránsito', 'El número de placa ya existe', 'error');
+      break;
+      case 3:
+        swal('Dirección Nacional de Tránsito', 'El número de chasís ya existe', 'error');
+      break;
+    }
+  }
+
+  verificarVehiculo(vehiculo:any){
+    let a = 1;
+    this._vehiculo.countPlaca(vehiculo.placa).subscribe((data:any)=>{
+      if(data.count > 0){
+        a = 2;
+      }
+      this._vehiculo.countChasis(vehiculo.chasis).subscribe((data1:any)=>{
+        if(data1.count > 0){
+          a = 3;
+        }
+        this.next2(a);
+      })
+      //return a;
+    })
+    //return a;
   }
 
   generaCodigoConductor(){

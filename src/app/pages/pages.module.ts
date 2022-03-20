@@ -39,6 +39,8 @@ import { HabilitarComponent } from './habilitar/habilitar.component';
 import { ProfileComponent } from './profile/profile.component';
 
 import { SindicatosListComponent } from './sindicatos-list/sindicatos-list.component';
+import { UeducativaComponent } from './ueducativa/ueducativa.component';
+import { UeducativasComponent } from './ueducativas/ueducativas.component';
 
 
 @NgModule({
@@ -60,7 +62,9 @@ import { SindicatosListComponent } from './sindicatos-list/sindicatos-list.compo
     MovilidadAsocComponent,
     HabilitarComponent,
     ProfileComponent,
-    SindicatosListComponent
+    SindicatosListComponent,
+    UeducativaComponent,
+    UeducativasComponent
   ],
   exports: [
     DashboardComponent,
@@ -71,7 +75,10 @@ import { SindicatosListComponent } from './sindicatos-list/sindicatos-list.compo
     AsociacionComponent,
     MovilidadAsocComponent,
     HabilitarComponent,
+    SindicatosListComponent,
     ProfileComponent,
+    UeducativaComponent,
+    UeducativasComponent
   ],
   imports: [ 
     CommonModule,

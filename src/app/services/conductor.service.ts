@@ -33,6 +33,11 @@ export class ConductorService {
     return this.http.post(url, regConductor);
   }
 
+  modificaConductor(conductor:any, idConductor:string){
+    let url = `${base_url}/api/conductores/${idConductor}`;
+    return this.http.patch(url, conductor);
+  }
+
   getConductores(){
       let url = `${base_url}/conductores`;
       return this.http.get(url);
