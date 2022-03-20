@@ -1,0 +1,39 @@
+<div class="fadeIn animated">
+    <div class="row">
+      <div class="col-6">
+        <div class="card card-body border">
+        <div class="row pl-3">
+          <i class="fa fa-institution"></i>
+          <span class="box-title m-b-0 ml-2 h5">Datos Unidad Educativa</span>
+        </div>
+          <span class="text-muted font-13"> A continuación ingrese información de la Unidad Educativa</span>
+          <hr>
+          <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                <form ngNativeValidate #f="ngForm">
+                  <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input required type="text" class="form-control" [(ngModel)]="ueducativa.nombre" name="nombre" id="nombre" placeholder="Nombre">
+                  </div>
+                  <div class="form-group">
+                    <label for="direccion">Direccion</label>
+                    <input required type="text" class="form-control" [(ngModel)]="ueducativa.direccion" name="direccion" id="direccion" placeholder="Dirección">
+                  </div>
+                  <div class="form-group">
+                    <label for="ciudad">Ciudad</label>
+                    <select class="form-control" name="ciudad" id="ciudad" ngModel>
+                      <option required *ngFor="let item of ciudades" [ngValue]="item">{{item}}</option>
+                    </select>
+                  </div>
+                   
+                   <div>
+                      <button [disabled]="f.invalid" mat-raised-button color="primary" (click)="registrar(f.value)" type="submit" class="form-control waves-effect waves-light m-r-10"><i class="fa fa-save"></i> {{ueducativa.id ? 'Actualizar':'Guardar'}}</button>
+                      <!--<button type="submit" class="btn btn-inverse waves-effect waves-light">Limpiar</button>-->
+                   </div>
+                </form>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
