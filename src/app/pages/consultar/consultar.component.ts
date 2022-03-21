@@ -5,53 +5,22 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { ConductorService } from '../../services/conductor.service';
 
+import swal from 'sweetalert';
+import { AntecedentesService } from '../../services/antecedentes.service';
+
 export interface UserData {
   id: string;
   name: string;
   progress: string;
   fruit: string;
 }
-/** Constants used to fill up our data base. */
-// const FRUITS: string[] = [
-//   'blueberry',
-//   'lychee',
-//   'kiwi',
-//   'mango',
-//   'peach',
-//   'lime',
-//   'pomegranate',
-//   'pineapple',
-// ];
-// const NAMES: string[] = [
-//   'Maia',
-//   'Asher',
-//   'Olivia',
-//   'Atticus',
-//   'Amelia',
-//   'Jack',
-//   'Charlotte',
-//   'Theodore',
-//   'Isla',
-//   'Oliver',
-//   'Isabella',
-//   'Jasper',
-//   'Cora',
-//   'Levi',
-//   'Violet',
-//   'Arthur',
-//   'Mia',
-//   'Thomas',
-//   'Elizabeth',
-// ];
-
-
 
 @Component({
   selector: 'app-consultar',
   templateUrl: './consultar.component.html',
   styleUrls: ['./consultar.component.css']
 })
-export class ConsultarComponent implements OnInit, AfterViewInit {
+export class ConsultarComponent implements OnInit {
 
   displayedColumns: string[] = ['#', 'nombre', 'ci', 'ueducativa', 'sindicato', 'placa', 'tipo', 'fecharegistro', 'acciones'];
   dataSource: MatTableDataSource<any>;
@@ -61,7 +30,10 @@ export class ConsultarComponent implements OnInit, AfterViewInit {
 
   conductores:any;
 
-  constructor(public _conductor:ConductorService) { 
+  constructor(
+    public _conductor:ConductorService,
+    private _antecedentes:AntecedentesService
+    ) { 
     // Create 100 users
     //const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
 
@@ -72,16 +44,13 @@ export class ConsultarComponent implements OnInit, AfterViewInit {
       this.conductores = res;
       //console.log(this.conductores);
       this.dataSource = new MatTableDataSource(this.conductores);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     })
   }
 
   ngOnInit(): void {
     
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
@@ -93,8 +62,39 @@ export class ConsultarComponent implements OnInit, AfterViewInit {
     }
   }
 
-  eliminar(value){
-    alert("eliminar"+value);
+  eliminar(idCond){
+    //alert("eliminar"+value);
+    swal({
+      title: "Dirección Nacional de Transito",
+      text:"¿Esta seguro que desea eliminar el registro? Se eliminará el conductor, el vehiculo y los antecedentes",
+      icon: "info",
+      buttons: ['NO', 'SI'],
+      dangerMode: true,
+    }).then((respuesta:boolean)=>{
+      if(respuesta){
+        //TODO eliminar lista de antecedentes dado el id de conductor
+        this.eliminarAntecedentesDeConductor(idCond);
+        return;
+      }
+      console.log('no eliminar solo cerrar modal');
+    })
+
+  }
+
+  eliminarConductor(idConductor:any){
+    
+  }
+
+  eliminarVehiculoDeConductor(idConductor:any){
+    
+  }
+
+  eliminarAntecedentesDeConductor(idConductor:any){
+      this._antecedentes.deleteByIdDriver(idConductor).subscribe(()=>{
+        //this.eliminarVehiculoDeConductor(idConductor);
+        swal('antecedentes eliminados');
+        //swal('Se eliminó sus antecedentes');
+      })
   }
 
   modificar(value){
