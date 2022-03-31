@@ -62,7 +62,7 @@ export class ConsultarComponent implements OnInit {
     }
   }
 
-  eliminar(idCond){
+  eliminar(idCond:any){
     //alert("eliminar"+value);
     swal({
       title: "Dirección Nacional de Transito",
@@ -90,8 +90,9 @@ export class ConsultarComponent implements OnInit {
   }
 
   eliminarAntecedentesDeConductor(idConductor:any){
-      this._antecedentes.deleteByIdDriver(idConductor).subscribe(()=>{
+      this._antecedentes.deleteByIdDriver(idConductor).subscribe((data)=>{
         //this.eliminarVehiculoDeConductor(idConductor);
+        console.log(data);
         swal('antecedentes eliminados');
         //swal('Se eliminó sus antecedentes');
       })

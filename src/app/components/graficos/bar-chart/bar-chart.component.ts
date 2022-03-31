@@ -14,6 +14,11 @@ export class BarChartComponent  {
   @Input('data') barChartData: MultiDataSet = [
     [350, 450, 100],
   ];
+  //para la captura
+  barChartData2: MultiDataSet = [
+    [20, 35, 33],
+  ];
+  
   @Input('labels') barChartLabels: Label[] = ['Enero', 'Febrero', 'Marzo'];
 
   //gestion:any = new Date().getFullYear();

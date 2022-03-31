@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
 
@@ -8,6 +8,9 @@ const base_url = environment.base_url;
   providedIn: 'root'
 })
 export class AsociacionService {
+
+  //notificacion
+  //notificacion = new EventEmitter<any>();
 
   constructor(private http:HttpClient) {
  
@@ -31,5 +34,10 @@ export class AsociacionService {
   updateImage(id:any, file:any){
     let url = `${base_url}/asociaciones/${id}`;
     return this.http.patch(url, file);
+  }
+
+  deleteAsociacion(idAsoc:any){
+    let url = `${base_url}/asociaciones/${idAsoc}`;
+    return this.http.delete(url)
   }
 }

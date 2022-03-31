@@ -4,6 +4,8 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { UeducativaService } from '../../services/ueducativa.service';
 
+import swal from 'sweetalert';
+
 @Component({
   selector: 'app-ueducativas',
   templateUrl: './ueducativas.component.html',
@@ -20,13 +22,7 @@ export class UeducativasComponent implements OnInit {
   ueducativas:any;
 
   constructor(private _ueducativa:UeducativaService) {
-    this._ueducativa.getUEducativas().subscribe((res)=>{
-      this.ueducativas = res;
-      this.dataSource = new MatTableDataSource(this.ueducativas);
-      
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;  
-  });
+    this.loadUEducativa();
    }
 
   ngOnInit(): void {
@@ -41,8 +37,40 @@ export class UeducativasComponent implements OnInit {
     }
   }
 
+
+  loadUEducativa(){
+    this._ueducativa.getUEducativas().subscribe((res)=>{
+      this.ueducativas = res;
+      this.dataSource = new MatTableDataSource(this.ueducativas);
+      
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;  
+  });
+  }
   eliminar(element:any){
     
+    swal({
+      title: "Dirección Nacional de Transito",
+      text:`Atencion!! Se eliminará la Unidad Educativa ${element.nombre} y todos los conductores asociados a la Unidad Educativa. ¿Desea eliminarlo de todas formas?`,
+      icon: "warning",
+      buttons: ['NO', 'SI'],
+      dangerMode: true,
+    }).then((respuesta:boolean)=>{
+      if(respuesta){
+        this._ueducativa.deleteUEducativa(element.id).subscribe((data:any)=>{
+          if(data.count){
+            this.loadUEducativa();
+            swal('Dirección Nacional de Transito', `Se eliminó la unidad educativa ${element.nombre} de manera exitosa`, 'success');
+            return;
+          }
+          else{
+            swal('Dirección Nacional de Tránsito', 'Ocurrió un error al eliminar', 'error');
+          }
+        })
+        //this.eliminarAntecedentesDeConductor(idCond);
+      }
+      //console.log('no eliminar solo cerrar modal');
+    })
   }
 
   modificar(element:any){

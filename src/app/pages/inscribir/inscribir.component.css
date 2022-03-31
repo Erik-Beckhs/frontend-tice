@@ -48,6 +48,8 @@
 
   .card-header {
     background-color: white;
+    font-size: 25px;
+    font-weight: 500;
 }
 
 mat-card{
@@ -58,4 +60,14 @@ mat-card{
 .card-photo{
   flex-direction: column;
   padding:10px;
+}
+
+#datos-tarjeta{
+  margin-top: 15px;
+}
+
+.card-body{
+  font-size: 17px;
+  line-height: 25px;
+  letter-spacing: 1px;
 }

@@ -28,6 +28,13 @@
                     <i class="fa fa-user-circle fa-2x"></i>
                     <span class="box-title m-b-0 h5 ml-2">Datos Conductor</span>
                   </div>
+                      <!--<ngx-qrcode 
+                          [elementType]="elementType" 
+                          [value] = "value2"
+                          cssClass = "aclass"
+                          errorCorrectionLevel = "L">
+                      </ngx-qrcode>-->
+
                     <span class="text-muted font-13"> A continuación ingrese información del conductor </span>
                     <hr>
                     <div class="row">
@@ -378,7 +385,7 @@
                          </div>
                        </div>
                        <div class="col-8">
-                          <div id="datos-tarjeta p-3">
+                          <div id="datos-tarjeta" class="p-3">
                             <p > 
                               <span class="fw-bold">Nombres: </span> 
                               <span>{{conductor.nombre}} </span>
@@ -392,7 +399,7 @@
                               <span>{{driver.tsangre | uppercase}} </span>
                             </p>
                             <p > 
-                              <span class="fw-bold"> Licencia:</span> 
+                              <span class="fw-bold"> Licencia: </span> 
                               <span>{{conductor.licencia}} </span>
                               <span class="fw-bold ml-4">Categoria: </span> 
                               <span>{{driver.categoria | uppercase}} </span>
@@ -407,7 +414,7 @@
                             </p>
                             <br>
                           </div>
-                          <p class="fw-bold fs-20 text-center">VALIDO DEL {{fini}} AL {{ffin}}</p>
+                          <p class="fw-bold fs-20 text-center">VALIDO DEL {{hoy}} AL {{ffin}}</p>
                        </div>
                     </div>
                    </div>

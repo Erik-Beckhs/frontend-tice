@@ -11,9 +11,9 @@ export class DonaComponent{
   
   @Input() title: string = 'Sin titulo';
 
-  @Input('labels') doughnutChartLabels: Label[] = ['Taxi', 'Bus Escolar', 'Otros'];
+  @Input('labels') doughnutChartLabels: Label[] = ['valor1', 'valor2', 'valor3', 'valor4'];
   @Input('data') doughnutChartData: MultiDataSet = [
-    [350, 450, 100],
+    [350, 450, 100, 25],
   ];
 
   public colors: Color[] = [

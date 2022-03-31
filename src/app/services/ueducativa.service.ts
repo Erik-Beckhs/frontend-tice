@@ -25,4 +25,14 @@ export class UeducativaService {
     let url = `${base_url}/unidades/${idueducativa}`;
     return this.http.patch(url, ueducativa);
   }
+
+  deleteUEducativa(idUE:any){
+    let url = `${base_url}/unidades/${idUE}`;
+    return this.http.delete(url)
+  }
+
+  getCountDriversByUE(){
+    let url = `${base_url}/unidades/countDriversByUE`;
+    return this.http.get(url);
+  }
 }

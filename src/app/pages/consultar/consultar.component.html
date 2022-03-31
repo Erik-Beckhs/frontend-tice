@@ -47,7 +47,7 @@
   
       <ng-container matColumnDef="fecharegistro">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de Registro </th>
-        <td mat-cell *matCellDef="let row"> {{row.fecharegistro}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.fecha_inicio | date:'short'}} </td>
       </ng-container>
   
       <ng-container matColumnDef="acciones">

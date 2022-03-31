@@ -17,4 +17,9 @@ export class TarjetaService {
      let url = `${base_url}/tarjetas/countTarjetaMes`;
      return this.http.get(url);
    }
+
+   saveCard(tice:any){
+     let url = `${base_url}/tarjetas`;
+     return this.http.post(url, tice);
+   }
 }

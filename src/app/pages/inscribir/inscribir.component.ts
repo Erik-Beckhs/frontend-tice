@@ -14,6 +14,7 @@ import { AsociacionService } from 'src/app/services/asociacion.service';
 import { ConductorService } from 'src/app/services/conductor.service';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
 import { UeducativaService } from '../../services/ueducativa.service';
+import { TarjetaService } from '../../services/tarjeta.service';
 
 @Component({
   selector: 'app-inscribir',
@@ -29,6 +30,8 @@ export class InscribirComponent implements OnInit {
   title = 'app';
   elementType = 'url';
   value:any;
+
+  value2:any;
 
   driver:any;
   vehicle:any;
@@ -48,11 +51,11 @@ export class InscribirComponent implements OnInit {
   fileUser:any;
   fileVehicle:any;
 
-  finscripcion:any = new Date();
+  //finscripcion:any = new Date();
 
   today:any = new Date();
   hoy:any;
-  fini:any;
+  //fini:any;
   ffin:any;
 
   //listas
@@ -116,7 +119,8 @@ export class InscribirComponent implements OnInit {
     private _sindicato:AsociacionService,
     private _conductor:ConductorService,
     private _vehiculo:VehiculoService,
-    private _ueducativa:UeducativaService
+    private _ueducativa:UeducativaService,
+    private _tarjeta:TarjetaService
     ) {
       this.expediciones=this._list.expediciones;
       
@@ -137,6 +141,16 @@ export class InscribirComponent implements OnInit {
       this.loadUEducativas();
     //this.today2 = new Date();
     //console.log(this.today2);
+
+    // this.value2 = `
+    // // UNIVERSIDAD MAYOR DE SAN ANDRÉS
+    // // III - LASIN
+    // // CERTIFICADO CORRESPONDIENTE A GONZALO VARGAS HUARAHUARA
+    // // CURSO: COMPUTACIÓN Y OFIMÁTICA
+    // // COD: LSI-2062
+    // // LA PAZ 2019
+    // // `
+    //         ;
     }
 
   ngOnInit(): void {
@@ -167,9 +181,13 @@ export class InscribirComponent implements OnInit {
   }
 
   fechaActual(){
-    this.hoy = `${this.today.getDate()}/${this.today.getMonth() + 1}/${this.today.getFullYear()}`;
-    this.fini = this.hoy;
-    this.ffin = `${this.today.getDate()}/${this.today.getMonth() + 1}/${this.today.getFullYear() + 1}`;
+    //this.hoy = `${this.today.getDate()}/${this.today.getMonth() + 1}/${this.today.getFullYear()}`;
+    this.hoy = this.today.toLocaleDateString();
+    //this.fini = this.today.toLocaleDateString();
+    //this.ffin = `${this.today.getDate()}/${this.today.getMonth() + 1}/${this.today.getFullYear() + 1}`;
+    let timeNextYear = this.today.setFullYear(this.today.getFullYear()+1);
+    let ffinDate = new Date(timeNextYear);
+    this.ffin = ffinDate.toLocaleDateString();
     //this.fin = 
   }
 
@@ -276,7 +294,7 @@ export class InscribirComponent implements OnInit {
                   Licencia: ${this.driver.licencia}
                   Categoria: ${this.driver.categoria}
                   placa: ${this.vehicle.placa}
-                  VALIDO DEL ${this.fini} AL ${this.ffin} 
+                  VALIDO DEL ${this.hoy} AL ${this.ffin} 
               `
             ;
   }
@@ -288,8 +306,10 @@ export class InscribirComponent implements OnInit {
       //actualizar
       this._conductor.modificaConductor(this.driver, this.idConductor).subscribe(()=>{
         this._vehiculo.modificaVehiculo(this.vehicle, this.idVehiculo).subscribe(()=>{
-          swal('Direccion Nacional de Tránsito', 'Se modificó su información de manera correcta', 'success');
+          swal('Direccion Departamental de Tránsito', 'Se modificó su información de manera correcta', 'success');
           this.registrado = true;
+
+          this.guardaTarjeta(this.idConductor);
         });
       });
       
@@ -304,16 +324,28 @@ export class InscribirComponent implements OnInit {
   
         this._vehiculo.guardarVehiculo(this.vehicle).subscribe((dataV:any)=>{
           console.log('Se registró el vehiculo');
-           swal("Dirección Nacional de Tránsito", "Se registró su información", "success").then(()=>{
+           swal("Dirección Departamental de Tránsito", "Se registró su información", "success").then(()=>{
              this.registrado = true;
              this.idConductor = data.id;
              this.idVehiculo = dataV.id;
+
+             this.guardaTarjeta(this.idConductor);
              //console.log(data);
            })
         })
         
       })
-      }
+    }
+  }
+
+  guardaTarjeta(idConductor:any){
+    let tice = {
+      id_conductor:idConductor,
+      fecha_inicio:this.hoy,
+      fecha_fin:this.ffin
+    }
+    this._tarjeta.saveCard(tice).subscribe(()=>console.log('Se registró la tarjeta'));
+    //llamada a servicio
   }
 
 anteriorTice(){

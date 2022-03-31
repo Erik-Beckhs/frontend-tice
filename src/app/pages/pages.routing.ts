@@ -34,7 +34,7 @@ const routes: Routes = [
             { path: '', component: PrincipalComponent, data: { titulo: 'Principal' } },
             { path: 'profile', component: ProfileComponent, data: { titulo: 'Mi Perfil' }},
             { path: 'inscribir', component: InscribirComponent, data: { titulo: 'Registro de Conductores' }},
-            { path: 'consultar', component: ConsultarComponent, data: { titulo: 'Consultar' }},
+            { path: 'consultar', component: ConsultarComponent, data: { titulo: 'Lista de Conductores' }},
             { path: 'about', component: AboutComponent, data: { titulo: 'Acerca de' }},
             { path: 'listas', component: ListasComponent, data: { titulo: 'Listas' }},
             { path: 'estadisticas', component: EstadisticasComponent, data: { titulo: 'Estadisticas' }},

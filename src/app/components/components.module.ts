@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { VehiculoComponent } from './vehiculo/vehiculo.component';
 import { PropietarioComponent } from './propietario/propietario.component';
 import { BarChartComponent } from './graficos/bar-chart/bar-chart.component';
+import { BarChart2Component } from './graficos/bar-chart2/bar-chart2.component';
 
 
 
@@ -23,7 +24,8 @@ import { BarChartComponent } from './graficos/bar-chart/bar-chart.component';
     PersonaComponent,
     VehiculoComponent,
     PropietarioComponent,
-    BarChartComponent
+    BarChartComponent,
+    BarChart2Component
   ],
   exports: [
     IncrementadorComponent,
@@ -31,7 +33,8 @@ import { BarChartComponent } from './graficos/bar-chart/bar-chart.component';
     PersonaComponent,
     VehiculoComponent,
     PropietarioComponent,
-    BarChartComponent
+    BarChartComponent,
+    BarChart2Component
   ],
   imports: [
     CommonModule,

@@ -9,11 +9,14 @@
     </div>
 
     <div class="col-6">
-        <app-dona title="Tipos de Vehiculos registrados"></app-dona>
+        <app-dona 
+        [data]="data2"
+        [labels]="labels2"
+        title="Tipos de Vehiculos registrados"></app-dona>
     </div>
 </div>
 
-<div class="row">
+<!--<div class="row">
     <div class="col-6">
         <app-dona title="Antecedentes registrados por mes"></app-dona>
     </div>
@@ -21,18 +24,23 @@
     <div class="col-6">
         <app-dona title="Antecedentes registrados por naturaleza"></app-dona>
     </div>
-</div>
+</div>-->
 
 <div class="row">
-    <div class="col-6">
+    <!-- <div class="col-6">
        
         <app-dona [labels]="labels1"
                   [data]="data1"
                   title="Cantidad de Conductores por Asociación">
         </app-dona>
-    </div>
+    </div> -->
 
-    <div class="col-6">
-        <app-dona title="Cantidad de Conductores por Unidad Educativa"></app-dona>
+    <div class="col-12">
+        <app-bar-chart2 
+        title="Cantidad de Conductores por Unidad Educativa"
+        [data]="data3"
+        [labels]="labels3"
+        valor="TICE - SC"
+        ></app-bar-chart2>
     </div>
 </div>
