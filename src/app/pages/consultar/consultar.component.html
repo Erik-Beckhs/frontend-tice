@@ -1,10 +1,16 @@
-<mat-form-field appearance="standard">
+<div class="card p-2">
+  <mat-form-field appearance="standard">
     <mat-label>Busqueda</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
   </mat-form-field>
   
-  <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
+  <div class="mat-elevation-z8" id="htmlData">
+  <!--<div class="d-flex justify-content-space-around">
+    <h2>Lista de Conductores</h2>
+    <h2>Dirección Departamental de Transporte Santa Cruz</h2>
+  </div>-->
+
+    <table class="mt-5" mat-table [dataSource]="dataSource" matSort>
   
       <!-- ID Column -->
       <ng-container matColumnDef="#">
@@ -62,8 +68,6 @@
          </td>
       </ng-container>
   
-  
-  
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   
@@ -75,4 +79,9 @@
   
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
   </div>
+
+  <div class="d-flex justify-content-end mt-4">
+    <button mat-raised-button (click)="downloadPDF()" color="primary"><i class="fa fa-cloud-download"></i> Descargar</button>
+  </div>
   
+</div>
