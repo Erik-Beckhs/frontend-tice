@@ -38,7 +38,7 @@
                         <div class="form-group">
                           <label for="exampleInputEmail1">Fecha de Nacimiento</label>
                           <input type="date" class="form-control" [(ngModel)]="conductor.fnac" name ="fnac"  id="exampleInputEmail1" >
-                      </div>
+                        </div>
                       </div>
                       <div class="col-6">
                         <div class="form-group">
@@ -56,9 +56,10 @@
                         </div>
                       </div>
                     </div>
+                <div class="row">
                   <div class="form-group">
                     <label for="exampleInputPassword1">Nacionalidad</label>
-                    <select class="form-control" [value]="conductor.nacionalidad" name="nacionalidad" id="">
+                    <select class="form-control" [value]="conductor.nacionalidad" name="nacionalidad" id="nacionalidad">
                       <option value="">Argentina</option>
                       <option value="">Brasil</option>
                       <option value="">Bolivia</option>
@@ -67,6 +68,7 @@
                 <div class="form-group">
                   <label for="exampleInputPassword1">Dirección</label>
                   <input type="text" class="form-control" [(ngModel)]="conductor.direccion" name ="direccion"  id="exampleInputPassword1" placeholder="Dirección">
+                </div>
                 </div>
                  <div class="d-flex justify-content-end">
                     <!--<button type="submit" class="form-control" mat-raised-button color="primary"><i class="fa fa-save"></i> Guardar</button>

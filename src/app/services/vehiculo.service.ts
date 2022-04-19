@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment.prod';
 
 const base_url = environment.base_url;
@@ -31,5 +32,12 @@ export class VehiculoService {
   countChasis(chasis:string){
     let url = `${base_url}/vehiculos/count?where={"chasis":"${chasis}"}`;
     return this.http.get(url);
+  }
+
+  lastID(){
+    let url = `${base_url}/vehiculos/ultimoID`;
+    return this.http.get(url).pipe(map((data)=>{
+      return data[0];
+    }));
   }
 }

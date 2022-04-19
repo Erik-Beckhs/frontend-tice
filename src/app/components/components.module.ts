@@ -16,7 +16,6 @@ import { BarChartComponent } from './graficos/bar-chart/bar-chart.component';
 import { BarChart2Component } from './graficos/bar-chart2/bar-chart2.component';
 
 
-
 @NgModule({
   declarations: [
     IncrementadorComponent,

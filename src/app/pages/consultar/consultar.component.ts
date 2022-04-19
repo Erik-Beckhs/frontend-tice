@@ -44,17 +44,21 @@ export class ConsultarComponent implements OnInit {
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(this.conductores);
 
+    this.loadConductores();
+  }
+
+  ngOnInit(): void {
+    
+  }
+
+  loadConductores(){
     this._conductor.getConductoresInfoGral().subscribe((res)=>{
       this.conductores = res;
       //console.log(this.conductores);
       this.dataSource = new MatTableDataSource(this.conductores);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    })
-  }
-
-  ngOnInit(): void {
-    
+    });
   }
 
   applyFilter(event: Event) {
@@ -77,29 +81,15 @@ export class ConsultarComponent implements OnInit {
     }).then((respuesta:boolean)=>{
       if(respuesta){
         //TODO eliminar lista de antecedentes dado el id de conductor
-        this.eliminarAntecedentesDeConductor(idCond);
-        return;
+        this._conductor.deleteConductor(idCond).subscribe(()=>{
+          swal('Dirección Nacional de Tránsito', 'Se eliminó al conductor de manera correcta', 'success').then(()=>{
+            this.loadConductores();
+          })
+        })
       }
-      console.log('no eliminar solo cerrar modal');
+      //console.log('no eliminar solo cerrar modal');
     })
 
-  }
-
-  eliminarConductor(idConductor:any){
-    
-  }
-
-  eliminarVehiculoDeConductor(idConductor:any){
-    
-  }
-
-  eliminarAntecedentesDeConductor(idConductor:any){
-      this._antecedentes.deleteByIdDriver(idConductor).subscribe((data)=>{
-        //this.eliminarVehiculoDeConductor(idConductor);
-        console.log(data);
-        swal('antecedentes eliminados');
-        //swal('Se eliminó sus antecedentes');
-      })
   }
 
   modificar(value){

@@ -3,7 +3,7 @@ import { AsociacionService } from '../../services/asociacion.service';
 
 import swal from 'sweetalert';
 import { ListsService } from '../../services/lists.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-asociacion',
@@ -15,28 +15,51 @@ export class AsociacionComponent implements OnInit {
   imageLoad:boolean=false;
   file:any;
 
+  id:any;
+
   representante:string;
   asociacion:any = {
     nombre:'',
     representante:'',
     direccion:'',
     ciudad:'',
-    fcreacion:'',
+    fcreacion:new Date(),
     img:''
   }
-
+  
   ciudades:string[]=[];
 
   constructor(
     private _asociacion:AsociacionService,
     private _list:ListsService,
-    private router:Router
+    private router:Router,
+    private activatedRoute:ActivatedRoute
     ) { 
     this.ciudades = this._list.ciudades; 
+    this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.loadAsociacion();
   }
 
   ngOnInit(): void {
     
+  }
+
+  loadAsociacion(){
+    if(this.id !== 0){
+      this._asociacion.getAsociacionById(this.id).subscribe((res)=>{
+        this.asociacion = res;
+
+        // let fechanaci = new Date(this.asociacion.fcreacion);
+        // this.cliente.fecha_nac = this.fechanaci;
+
+        this.asociacion.fcreacion = new Date(this.asociacion.fcreacion);
+
+        if(this.asociacion.img){
+          this.imageTemp = this.asociacion.img;
+        }
+        
+      })
+    }
   }
 
   onFileChange(event:any) {
@@ -84,20 +107,39 @@ export class AsociacionComponent implements OnInit {
     })
   }
 
-  registrarAsociacion(asociacion:any){
-    if(asociacion.nombre.length===0){
-      swal("Dirección Nacional de Tránsito", "El nombre de asociacion es obligatorio", "error");
-      return ;
+  limpiar(){
+    this.asociacion = {
+      nombre:'',
+      representante:'',
+      direccion:'',
+      ciudad:'',
+      fcreacion:'',
+      img:''
     }
-    this._asociacion.saveAsoc(asociacion).subscribe((res:any)=>{
-      this.asociacion.id = res.id;
-      swal("Direccion Nacional de Transito", "Se registrò su asociacion de manera correcta", "success");
-    })    
-    //TODO: verificar si ya existe el nombre de proveedor
-    // supplier.id=this._generateID.generateID();
-    // supplier.idContact=this.contact.id;
-    // //console.log(supplier)
-    // this._supplier.registerSupplier(supplier).subscribe();
+  }
+
+  registrarAsociacion(asociacion:any){
+    if(this.imageTemp){
+      asociacion.img = this.imageTemp;
+    }
+
+    if(this.id !== 0){
+      //editar
+      this._asociacion.updateAsociacion(this.id, asociacion).subscribe((res)=>{
+        swal('Dirección Nacional de Tránsito', `Se modificó de manera exitosa el registro ${asociacion.nombre}`, 'success').then(()=>{
+          this.router.navigate(['dashboard/sindicatos']);
+        })
+      })
+    }  
+    else{
+      //nuevo
+      this._asociacion.saveAsoc(asociacion).subscribe((res:any)=>{
+        this.asociacion.id = res.id;
+        swal("Direccion Nacional de Transito", "Se registró su asociacion de manera correcta", "success").then(()=>{
+          this.router.navigate(['dashboard', 'sindicatos'])
+        })
+      }) 
+    }
   }
 
 }

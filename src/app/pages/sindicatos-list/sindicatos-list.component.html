@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-start">
-    <button mat-raised-button color="accent" routerLink="/dashboard/asociacion">
+    <button mat-raised-button color="accent" [routerLink]="['/dashboard/asociacion/0']">
         <i class="fa fa-plus"></i>
          Nuevo
     </button>
@@ -53,7 +53,7 @@
             <button (click)="eliminar(row)" title="eliminar" mat-fab color="warn" aria-label="Example icon button with a delete icon">
                 <mat-icon>delete</mat-icon>
               </button>
-              <button (click)="modificar(row)" title="modificar" mat-fab color="primary" class="mx-1" aria-label="Example icon button with a delete icon">
+              <button (click)="modificar(row.id)" title="modificar" mat-fab color="primary" class="mx-1" aria-label="Example icon button with a delete icon">
                 <mat-icon>edit</mat-icon>
               </button>
         </td>

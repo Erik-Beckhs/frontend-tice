@@ -3,7 +3,7 @@ import { ListsService } from '../../services/lists.service';
 import { UeducativaService } from '../../services/ueducativa.service';
 
 import swal from 'sweetalert';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-ueducativa',
@@ -17,23 +17,40 @@ export class UeducativaComponent implements OnInit {
     ciudad:''
   };
 
+  id:any;
+
   ciudades:string[]=[];
 
   constructor(
     private _list:ListsService,
     private _ueducativa:UeducativaService,
-    private router:Router
+    private router:Router,
+    private activatedRoute:ActivatedRoute
     ) {
+    this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
     this.ciudades=this._list.ciudades;
+    this.loadUEducativa();
+
    }
 
   ngOnInit(): void {
+
+  }
+
+  loadUEducativa(){
+    //verificamos el id y guardamos en ueducativa
+    if(this.id  !==  0){
+      this._ueducativa.getUEducativaById(this.id).subscribe((res:any)=>{
+        this.ueducativa = res;
+        console.log(res);
+      })
+    }
   }
 
   registrar(ueducativa:any){
-    if(this.ueducativa.id){
+    if(this.id !== 0){
       //actualizar
-      this._ueducativa.updateUEducativa(ueducativa, this.ueducativa.id).subscribe(()=>{
+      this._ueducativa.updateUEducativa(this.id, ueducativa).subscribe(()=>{
         swal('Dirección Nacional de Transito', 'La unidad educativa se actualizo con exito', 'success').then(()=>{
           this.router.navigate(['dashboard/ueducativas']);
         });

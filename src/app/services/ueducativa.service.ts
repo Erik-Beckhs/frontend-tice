@@ -21,7 +21,7 @@ export class UeducativaService {
     return this.http.post(url, ueducativa);
   }
 
-  updateUEducativa(ueducativa:any, idueducativa:any){
+  updateUEducativa(idueducativa:any, ueducativa:any){
     let url = `${base_url}/unidades/${idueducativa}`;
     return this.http.patch(url, ueducativa);
   }
@@ -33,6 +33,11 @@ export class UeducativaService {
 
   getCountDriversByUE(){
     let url = `${base_url}/unidades/countDriversByUE`;
+    return this.http.get(url);
+  }
+
+  getUEducativaById(id:any){
+    let url= `${base_url}/unidades/${id}`;
     return this.http.get(url);
   }
 }

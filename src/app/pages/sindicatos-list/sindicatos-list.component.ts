@@ -5,6 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { AsociacionService } from '../../services/asociacion.service';
 
 import swal from 'sweetalert';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sindicatos-list',
@@ -21,7 +22,8 @@ export class SindicatosListComponent implements AfterViewInit {
   sindicatos:any;
 
   constructor(
-    private _asociaciones:AsociacionService
+    private _asociaciones:AsociacionService,
+    private router:Router
     ) { 
     this.loadAsociaciones();
   }
@@ -66,7 +68,7 @@ export class SindicatosListComponent implements AfterViewInit {
         this._asociaciones.deleteAsociacion(element.id).subscribe((data:any)=>{
           if(data.count){
             this.loadAsociaciones();
-            swal('Dirección Nacional de Transito', `Se eliminó la asociacion ${element.nombre} de manera exitosa`, 'success');
+            swal('Dirección Nacional de Tránsito', `Se eliminó la asociacion ${element.nombre} de manera exitosa`, 'success');
             return;
           }
           else{
@@ -80,7 +82,7 @@ export class SindicatosListComponent implements AfterViewInit {
   }
 
   modificar(element:any){
-
+    this.router.navigate(['/dashboard/asociacion', element]);
   }
 
 }

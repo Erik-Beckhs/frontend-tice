@@ -5,6 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { UeducativaService } from '../../services/ueducativa.service';
 
 import swal from 'sweetalert';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ueducativas',
@@ -21,7 +22,10 @@ export class UeducativasComponent implements OnInit {
 
   ueducativas:any;
 
-  constructor(private _ueducativa:UeducativaService) {
+  constructor(
+    private _ueducativa:UeducativaService,
+    private router:Router
+    ) {
     this.loadUEducativa();
    }
 
@@ -74,8 +78,6 @@ export class UeducativasComponent implements OnInit {
   }
 
   modificar(element:any){
-
+      this.router.navigate(['dashboard/ueducativa', element]);
   }
-
-
 }

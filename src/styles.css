@@ -77,3 +77,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .justify-content-space-around{
     justify-content: space-around;
 }
+
+.justify-content-end{
+    justify-content: end;
+}
+
+.d-flex{
+    display: flex;
+}

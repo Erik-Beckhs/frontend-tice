@@ -12,8 +12,8 @@ export class SidebarService {
       submenu: [
         //{ titulo: 'Principal', url: '/' },
         { titulo: 'Conductor', url: '/dashboard/inscribir' },
-        { titulo: 'Sindicato', url: '/dashboard/asociacion' },
-        { titulo: 'Unidad Educativa', url: '/dashboard/ueducativa' },
+        { titulo: 'Sindicato', url: '/dashboard/asociacion/0' },
+        { titulo: 'Unidad Educativa', url: '/dashboard/ueducativa/0' },
         //{ titulo: 'Acerca de', url: '/dashboard/about' },
         { titulo: 'Estadisticas', url: '/dashboard/estadisticas' }
         // { titulo: 'Principal', url: '/' },

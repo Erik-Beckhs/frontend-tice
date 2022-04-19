@@ -26,10 +26,10 @@ export class AsociacionService {
     return this.http.get(url);
   }
 
-  // getAsociacionesYCantidad(){
-  //   let url = `${base_url}/`;
-  //   return this.http.get(url);
-  // }
+  getAsociacionById(id:any){
+     let url = `${base_url}/asociaciones/${id}`;
+     return this.http.get(url);       
+  }
 
   updateImage(id:any, file:any){
     let url = `${base_url}/asociaciones/${id}`;
@@ -39,5 +39,10 @@ export class AsociacionService {
   deleteAsociacion(idAsoc:any){
     let url = `${base_url}/asociaciones/${idAsoc}`;
     return this.http.delete(url)
+  }
+
+  updateAsociacion(id:any, asociacion:any){
+    let url = `${base_url}/asociaciones/${id}`;
+    return this.http.patch(url, asociacion);
   }
 }

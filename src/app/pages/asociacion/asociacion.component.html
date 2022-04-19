@@ -1,79 +1,97 @@
-<div class="fadeIn animated">
+<div class="fadeIn animated card p-3">
     <div class="row">
-      <div class="col-6">
-        <div class="card card-body border">
-        <div class="row pl-3">
-          <i class="fa fa-group"></i>
-          <span class="box-title m-b-0 ml-2 h5">Datos Asociación</span>
-        </div>
-          <span class="text-muted font-13"> A continuación ingrese información de la asociación</span>
-          <hr>
-          <div class="row">
-              <div class="col-sm-12 col-xs-12">
-                <form ngNativeValidate #f="ngForm">
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Nombre</label>
-                    <input required type="text" class="form-control" [(ngModel)]="asociacion.nombre" name="nombre" id="exampleInputPassword1" placeholder="Nombres">
-                  </div>
-                  <div class="row">
-                    <div class="col-6">
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Representante</label>
-                         <input required placeholder="Representante" type="text" class="form-control" [(ngModel)]="asociacion.representante" name="representante" class="form-control">
-                       </div> 
+      <form ngNativeValidate #f="ngForm" (ngSubmit)="registrarAsociacion(f.value)">
+      <div class="row">
+        <div class="col-6">
+          <div class="card-body border">
+          <div class="row pl-3">
+            <i class="fa fa-group"></i>
+            <span class="box-title m-b-0 ml-2 h5">Datos Asociación</span>
+          </div>
+            <span class="text-muted font-13"> A continuación ingrese información de la asociación</span>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                  
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Nombre</label>
+                      <input required type="text" class="form-control" [(ngModel)]="asociacion.nombre" name="nombre" id="exampleInputPassword1" placeholder="Nombres">
                     </div>
-                    <div class="col-6">
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Dirección</label>
-                        <input required type="text" class="form-control" [(ngModel)]="asociacion.direccion" name="direccion" id="exampleInputPassword1" placeholder="Dirección">
-                    </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-6">
-                      <div class="form-group">
-                        
-                        <label for="ciudad">Ciudad</label>
-                        <select class="form-control" name="ciudad" id="ciudad" ngModel>
-                          <option required *ngFor="let item of ciudades" [ngValue]="item">{{item}}</option>
-                        </select>
-
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Representante</label>
+                          <input required placeholder="Representante" type="text" class="form-control" [(ngModel)]="asociacion.representante" name="representante" class="form-control">
+                        </div> 
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Dirección</label>
+                          <input required type="text" class="form-control" [(ngModel)]="asociacion.direccion" name="direccion" id="exampleInputPassword1" placeholder="Dirección">
+                      </div>
                       </div>
                     </div>
-                    <div class="col-6">
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Fecha de creación</label>
-                        <input required type="date" class="form-control" [(ngModel)]="asociacion.fcreacion" name="fcreacion" id="exampleInputPassword1">
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="ciudad">Ciudad</label>
+                          <select required class="form-control" name="ciudad" id="ciudad" ([ngModel])="asociacion.ciudad">
+                            <option disabled value="">Seleccione un valor</option>
+                            <option *ngFor="let item of ciudades" [value]="item">{{item}}</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="fcreacion">Fecha de creación</label>
+                          <mat-label>Elije una fecha</mat-label>
+                          
+                            <input matInput [matDatepicker]="picker" [(ngModel)]="asociacion.fcreacion" id="fcreacion" name="fcreacion">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        
+                          <!--<input required type="date" class="form-control" [(ngModel)]="asociacion.fcreacion" name="fcreacion" id="fcreacion">-->
+                      </div>
+                      </div>
                     </div>
+                    
+                    <div class="d-flex justify-content-end">
+                        <!--<button [disabled]="f.invalid" mat-raised-button color="primary" (click)="registrarAsociacion(f.value)" type="submit" class="form-control waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Guardar</button>
+                        <button type="submit" class="btn btn-inverse waves-effect waves-light">Limpiar</button>-->
                     </div>
-                  </div>
-                   
-                   <div class="d-flex justify-content-end">
-                      <button [disabled]="f.invalid" mat-raised-button color="primary" (click)="registrarAsociacion(f.value)" type="submit" class="form-control waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Guardar</button>
-                      <!--<button type="submit" class="btn btn-inverse waves-effect waves-light">Limpiar</button>-->
-                   </div>
-                </form>
+                  
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card-body border">
+            <div class="box-title m-b-0 h5">Imagen</div>
+            <p class="text-muted m-b-0 font-13"> {{asociacion.nombre}} </p>
+            <hr>
+            <div class="row d-flex" style="flex-direction: column;">
+              <div style="text-align:center;">
+                <img *ngIf="!imageTemp" [src]="asociacion.img | emptyImg" alt="" class="w-200">
+                <img *ngIf="imageTemp" [src]="imageTemp" alt="" class="w-200">
               </div>
+              <div style="text-align:center;">
+                <input type="file" class="my-2" (change)="onFileChange($event)">
+              </div>
+
+            </div>   
+            <!--<button mat-raised-button color="primary" (click)="updateImage()" [disabled]="!imageLoad"  class="btn px-5 form-control scale"><i class="fa fa-save"></i> Actualizar Imagen</button>-->
           </div>
         </div>
       </div>
-      <div class="col-6">
-        <div class="card card-body border">
-          <div class="box-title m-b-0 h5">Imagen</div>
-          <p class="text-muted m-b-0 font-13"> {{asociacion.nombre}} </p>
-          <hr>
-          <div class="row d-flex" style="flex-direction: column;">
-            <div style="text-align:center;">
-              <img *ngIf="!imageTemp" [src]="asociacion.img | emptyImg" alt="" class="w-200">
-              <img *ngIf="imageTemp" [src]="imageTemp" alt="" class="w-200">
-            </div>
-            <div style="text-align:center;">
-              <input type="file" class="my-2" (change)="onFileChange($event)">
-            </div>
-
-          </div>   
-          <button mat-raised-button color="primary" (click)="updateImage()" [disabled]="!imageLoad"  class="btn px-5 form-control scale"><i class="fa fa-save"></i> Actualizar Imagen</button>
+      <div>
+        <div class="d-flex justify-content-end m-3">
+          <button mat-raised-button color="accent" type="button" (click)="limpiar()" class="mx-1">
+            <i class="fa fa-eraser"></i>
+            Limpiar
+          </button>
+          <button [disabled]="f.invalid" mat-raised-button color="primary" type="submit" class=""><i class="fa fa-save"></i> {{id !== 0?'Actualizar':'Guardar'}}</button>
         </div>
       </div>
+    </form>
     </div>
   </div>

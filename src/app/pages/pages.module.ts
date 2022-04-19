@@ -1,3 +1,4 @@
+// Modulos
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -12,12 +13,14 @@ import {MatIconModule} from '@angular/material/icon';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { HttpClientModule } from '@angular/common/http';
 import { PipesModule } from 'src/app/pipes/pipes.module';
-
-// Modulos
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { SharedModule } from '../shared/shared.module';
 import { ComponentsModule } from '../components/components.module';
 import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule } from '@angular/forms';
 
+//componentes
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
@@ -31,17 +34,13 @@ import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { InscribirComponent } from './inscribir/inscribir.component';
 import { ListasComponent } from './listas/listas.component';
 import { ConsultarComponent } from './consultar/consultar.component';
-
-import { ReactiveFormsModule } from '@angular/forms';
 import { AsociacionComponent } from './asociacion/asociacion.component';
 import { MovilidadAsocComponent } from './movilidad-asoc/movilidad-asoc.component';
 import { HabilitarComponent } from './habilitar/habilitar.component';
 import { ProfileComponent } from './profile/profile.component';
-
 import { SindicatosListComponent } from './sindicatos-list/sindicatos-list.component';
 import { UeducativaComponent } from './ueducativa/ueducativa.component';
 import { UeducativasComponent } from './ueducativas/ueducativas.component';
-
 
 @NgModule({
   declarations: [
@@ -97,7 +96,9 @@ import { UeducativasComponent } from './ueducativas/ueducativas.component';
     NgxQRCodeModule, 
     MatCardModule,
     HttpClientModule,
-    PipesModule
+    PipesModule,
+    MatDatepickerModule,
+    MatNativeDateModule 
   ]
 })
 export class PagesModule { }

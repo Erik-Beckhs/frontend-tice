@@ -136,6 +136,8 @@ export class InscribirComponent implements OnInit {
 
       //this.today = moment(this.hoy).format("DD/MM/YYYY hh:mm A");
       this.generaCodigoConductor();
+      this.generaCodigoVehiculo();
+
       //this.sindicatos = this._sindicato.getAsociaciones();
       this.loadSindicatos();
       this.loadUEducativas();
@@ -415,6 +417,15 @@ anteriorTice(){
       let codigo = ('00' + val).slice(-3);
       console.log('codigo obtenido')
       this.conductor.numreg =  `COND-${codigo}`;
+    })
+  }
+
+  generaCodigoVehiculo(){
+    this._vehiculo.lastID().subscribe((data:any)=>{
+      let val = parseInt(data.id) + 1;
+      let codigo = ('0000' + val).slice(-5);
+      //console.log('codigo obtenido'+codigo);
+      this.vehiculo.codigo =  `V-${codigo}`;
     })
   }
 }

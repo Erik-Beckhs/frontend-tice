@@ -1,4 +1,5 @@
-<div class="fadeIn animated">
+
+  <div class="fadeIn animated">
     <div class="row">
       <div class="col-6">
         <div class="card card-body border">
@@ -21,8 +22,9 @@
                   </div>
                   <div class="form-group">
                     <label for="ciudad">Ciudad</label>
-                    <select class="form-control" name="ciudad" id="ciudad" ngModel>
-                      <option required *ngFor="let item of ciudades" [ngValue]="item">{{item}}</option>
+                    <select required class="form-control" name="ciudad" id="ciudad" [(ngModel)]="ueducativa.ciudad">
+                      <option disabled required value="">Seleccione una opción</option>
+                      <option *ngFor="let item of ciudades" [value]="item">{{item}}</option>
                     </select>
                   </div>
                    

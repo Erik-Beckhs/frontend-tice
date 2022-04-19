@@ -47,6 +47,11 @@ export class ConductorService {
     let url = `${base_url}/conductores/ListadoDeConductores`;
     return this.http.get(url);
   }
+
+  deleteConductor(id:any){
+    let url = `${base_url}/conductores/${id}`;
+    return this.http.delete(url);
+  }
   
   lastID(){
     let url = `${base_url}/conductores/ultimoID`;
