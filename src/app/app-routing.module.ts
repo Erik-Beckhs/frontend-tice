@@ -6,6 +6,7 @@ import { PagesRoutingModule } from './pages/pages.routing';
 import { AuthRoutingModule } from './auth/auth.routing';
 
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [

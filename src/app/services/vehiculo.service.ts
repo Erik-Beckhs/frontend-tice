@@ -40,4 +40,13 @@ export class VehiculoService {
       return data[0];
     }));
   }
+
+  getVehiculoByIdConductor(idConductor:any){
+    let url = `${base_url}/conductores/${idConductor}/vehiculos`;
+    return this.http.get(url).pipe(map(
+      (data)=>{
+        return data[0];
+      }
+    ))
+  }
 }

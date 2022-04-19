@@ -19,6 +19,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ComponentsModule } from '../components/components.module';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
 
 //componentes
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -41,6 +42,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { SindicatosListComponent } from './sindicatos-list/sindicatos-list.component';
 import { UeducativaComponent } from './ueducativa/ueducativa.component';
 import { UeducativasComponent } from './ueducativas/ueducativas.component';
+import { EditConductorComponent } from './edit-conductor/edit-conductor.component';
+
 
 @NgModule({
   declarations: [
@@ -63,7 +66,8 @@ import { UeducativasComponent } from './ueducativas/ueducativas.component';
     ProfileComponent,
     SindicatosListComponent,
     UeducativaComponent,
-    UeducativasComponent
+    UeducativasComponent,
+    EditConductorComponent
   ],
   exports: [
     DashboardComponent,
@@ -77,7 +81,8 @@ import { UeducativasComponent } from './ueducativas/ueducativas.component';
     SindicatosListComponent,
     ProfileComponent,
     UeducativaComponent,
-    UeducativasComponent
+    UeducativasComponent,
+    EditConductorComponent
   ],
   imports: [ 
     CommonModule,
@@ -98,7 +103,8 @@ import { UeducativasComponent } from './ueducativas/ueducativas.component';
     HttpClientModule,
     PipesModule,
     MatDatepickerModule,
-    MatNativeDateModule 
+    MatNativeDateModule,
+    MatDialogModule
   ]
 })
 export class PagesModule { }

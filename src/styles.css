@@ -22,8 +22,13 @@
     width:20px;
 }
 .w-50{
-    width:50px;
+    width:50px !important;
 }
+
+.w-70{
+    width:70px !important;
+}
+
 .w-100{
     width:100px !important;
 }
@@ -39,8 +44,6 @@
 .w-300{
     width:300px;
 }
-
-
 
 /*///width///*/
 

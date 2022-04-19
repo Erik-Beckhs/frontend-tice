@@ -24,16 +24,17 @@ import { ProfileComponent } from './profile/profile.component';
 import { SindicatosListComponent } from './sindicatos-list/sindicatos-list.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { UeducativasComponent } from './ueducativas/ueducativas.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
     { 
         path: 'dashboard', 
         component: PagesComponent,
-        //canActivate: [ AuthGuard ],
+        canActivate: [ AuthGuard ],
         children: [
             { path: '', component: ConsultarComponent, data: { titulo: 'Principal' } },
             { path: 'profile', component: ProfileComponent, data: { titulo: 'Mi Perfil' }},
-            { path: 'inscribir', component: InscribirComponent, data: { titulo: 'Registro de Conductores' }},
+            { path: 'inscribir/:id', component: InscribirComponent, data: { titulo: 'Registro de Conductores' }},
             { path: 'consultar', component: ConsultarComponent, data: { titulo: 'Lista de Conductores' }},
             { path: 'about', component: AboutComponent, data: { titulo: 'Acerca de' }},
             { path: 'listas', component: ListasComponent, data: { titulo: 'Listas' }},

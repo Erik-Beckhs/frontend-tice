@@ -2,18 +2,20 @@
     <div class="card card-body mb-1 p-2">
       <div class="row p-3">
         <i class="fa fa-vcard-o fa-2x"></i>
-        <span class="h5 pl-1 fw-bold">Registro de Conductor</span>
+        <span class="h5 pl-1 fw-bold">{{idDriver?'Actualizar Conductor':'Registro de Conductor'}}</span>
       </div>
-      <p for="" class="">
-        Para inscribir a un conductor nuevo siga los siguientes pasos:
-      </p>
-      <ol>
-        <li>Registre los datos personales del conductor</li>
-        <li>Registre los datos del vehiculo, si se trata de un vehiculo existente seleccionelo</li>
-        <li>Genere la tarjeta TICE</li>
-      </ol>
-      <p><span class="fw-bold">Nota.</span>  Para la generacion de la tarjeta TICE debe llenar todos los campos de manera obligatoria</p>
-      <p>Si el conductor ya existiese y desea renovar su tarjeta, debe consultar su existencia en el menu de listado de conductores</p>
+      <div *ngIf="!idDriver">
+        <p for="" class="">
+          Para inscribir a un conductor nuevo siga los siguientes pasos:
+        </p>
+        <ol>
+          <li>Registre los datos personales del conductor</li>
+          <li>Registre los datos del vehiculo, si se trata de un vehiculo existente seleccionelo</li>
+          <li>Genere la tarjeta TICE</li>
+        </ol>
+        <p><span class="fw-bold">Nota.</span>  Para la generacion de la tarjeta TICE debe llenar todos los campos de manera obligatoria</p>
+        <p>Si el conductor ya existiese y desea renovar su tarjeta, debe consultar su existencia en el menu de listado de conductores</p>
+      </div>
     </div>
     <mat-horizontal-stepper #stepper linear>
         <mat-step>
@@ -41,8 +43,8 @@
                         <div class="col-sm-12 col-xs-12">
 
                               <div class="form-group">
-                                <label for="numreg">Número de Registro</label>
-                                <input readonly type="string" class="form-control" [(ngModel)]="conductor.numreg" name ="numreg"  id="numreg" placeholder="Numero de Registro"> 
+                                <label for="codigo">Número de Registro</label>
+                                <input readonly type="string" class="form-control" [(ngModel)]="conductor.codigo" name ="codigo"  id="numreg" placeholder="Numero de Registro"> 
                               </div>
                                 <div class="row">
                                   <div class="col-6">
@@ -53,17 +55,17 @@
                                   </div>
                                   <div class="col-6">
                                     <div class="form-group">
-                                      <label for="lugar">Lugar de Expedición</label>
-                                      <select required name="lugar" id="lugar" class="form-control" ngModel>
+                                      <label for="expedicion">Lugar de Expedición</label>
+                                      <select required name="expedicion" id="expedicion" class="form-control" [(ngModel)]="conductor.expedicion">
                                         <option value="" disabled>Elija una opción</option>
-                                        <option *ngFor="let item of expediciones" [ngValue]="item.valor">{{item.valor}}</option>
+                                        <option *ngFor="let item of expediciones" [value]="item.valor">{{item.valor}}</option>
                                       </select>
                                     </div>
                                   </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="nombre">Nombres</label>
-                                    <input required type="text" class="form-control" [(ngModel)]="conductor.nombre" name="nombre"  id="nombre" placeholder="Nombres">
+                                    <label for="nombres">Nombres</label>
+                                    <input required type="text" class="form-control" [(ngModel)]="conductor.nombres" name="nombres"  id="nombres" placeholder="Nombres">
                                 </div>
                                 <div class="form-group">
                                     <label for="apellidos">Apellidos</label>
@@ -109,7 +111,7 @@
                 </div>
                 <div class="col-6">
                   <div class="card card-body border">
-                    <div class="box-title m-b-0 h5">{{conductor.nombre}} {{conductor.apellidos}}</div>
+                    <div class="box-title m-b-0 h5">{{conductor.nombres}} {{conductor.apellidos}}</div>
                     <p class="text-muted m-b-0 font-13"> Informacion Adicional </p>
                     <hr>   
           
@@ -381,7 +383,7 @@
                             <div class="d-flex justify-content-center">
                               <img [src]="imageTempUser" alt="" class="w-200">
                             </div>
-                            <p class="text-center fs-17">{{driver.ci}} {{driver.lugar}}</p>
+                            <p class="text-center fs-17">{{driver.ci}} {{driver.expedicion}}</p>
                          </div>
                        </div>
                        <div class="col-8">

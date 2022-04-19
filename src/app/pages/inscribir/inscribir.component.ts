@@ -15,6 +15,7 @@ import { ConductorService } from 'src/app/services/conductor.service';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
 import { UeducativaService } from '../../services/ueducativa.service';
 import { TarjetaService } from '../../services/tarjeta.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-inscribir',
@@ -80,12 +81,12 @@ export class InscribirComponent implements OnInit {
   //   fnac:'27/05/1991'
   // };
   conductor:any = {
-      nombre:'',
+      nombres:'',
       apellidos:'',
       direccion:'',
       ci : 0,
-      lugar:'',
-      numreg:'',
+      expedicion:'',
+      codigo:'',
       tsangre:'',
       licencia:'',
       ueducativa:0,
@@ -108,6 +109,8 @@ export class InscribirComponent implements OnInit {
 
   card:boolean = false;
 
+  idDriver:any;
+
   //hoy = Date.now(); 
   //today:any = '';
 
@@ -120,11 +123,12 @@ export class InscribirComponent implements OnInit {
     private _conductor:ConductorService,
     private _vehiculo:VehiculoService,
     private _ueducativa:UeducativaService,
-    private _tarjeta:TarjetaService
+    private _tarjeta:TarjetaService,
+    private activatedRoute:ActivatedRoute
     ) {
       this.expediciones=this._list.expediciones;
       
-      this.ueducativas=this._list.ueducativas;
+      //this.ueducativas=this._list.ueducativas;
 
       this.tservicios=this._list.tservicios;
       this.tiposangre = this._list.tsangre;
@@ -135,12 +139,20 @@ export class InscribirComponent implements OnInit {
       this.fechaActual();
 
       //this.today = moment(this.hoy).format("DD/MM/YYYY hh:mm A");
-      this.generaCodigoConductor();
-      this.generaCodigoVehiculo();
+      
 
       //this.sindicatos = this._sindicato.getAsociaciones();
       this.loadSindicatos();
       this.loadUEducativas();
+
+      this.idDriver = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
+      this.loadConductor();
+
+      if(this.idDriver === 0){
+        this.generaCodigoConductor();
+        this.generaCodigoVehiculo();
+      }
+
     //this.today2 = new Date();
     //console.log(this.today2);
 
@@ -168,10 +180,23 @@ export class InscribirComponent implements OnInit {
     }, 1000);
   }
 
+  loadConductor(){
+    if(this.idDriver !== 0){
+      this.getConductorById();
+    }
+  }
+
   loadUEducativas(){
     this._ueducativa.getUEducativas().subscribe(data=>{
       this.ueducativas = data;
     })
+  }
+
+  getConductorById(){
+    this._conductor.getConductorById(this.idDriver).subscribe((res)=>{
+      this.conductor = res;
+      console.log(this.conductor);
+    });
   }
 
   /*ngAfterViewInit(): void {
@@ -227,6 +252,8 @@ export class InscribirComponent implements OnInit {
     reader.onloadend = ()=>{
       //console.log(reader.result)
       this.imageTempUser = reader.result;
+      //console.log(typeof this.imageTempUser);
+      //console.log(this.imageTempUser);
     }
   }
 
@@ -415,8 +442,8 @@ anteriorTice(){
     this._conductor.lastID().subscribe((data:any)=>{
       let val = parseInt(data.id) + 1;
       let codigo = ('00' + val).slice(-3);
-      console.log('codigo obtenido')
-      this.conductor.numreg =  `COND-${codigo}`;
+      console.log('codigo generado')
+      this.conductor.codigo =  `COND-${codigo}`;
     })
   }
 
@@ -432,7 +459,7 @@ anteriorTice(){
 
 export class ConductorInterface {
   ci?:number;
-  lugar?:string;
+  expedicion?:string;
   nombre?:string;
   apellidos?:string;
   fnac?:any;
@@ -440,7 +467,7 @@ export class ConductorInterface {
   nacionalidad?:string;
   direccion?:string;
   img?:string;
-  numreg?:string;
+  codigo?:string;
   sindicato?:number;
   ueducativa?:number;
   licencia?:string;

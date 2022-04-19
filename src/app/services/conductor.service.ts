@@ -16,9 +16,9 @@ export class ConductorService {
 
   registraConductor(conductor:any){
     let regConductor = {
-      "codigo": conductor.numreg,
+      "codigo": conductor.codigo,
       "ci": conductor.ci,
-      "nombres": conductor.nombre,
+      "nombres": conductor.nombres,
       "apellidos": conductor.apellidos,
       "cat_licencia": conductor.categoria,
       "fecha_nac": conductor.fnac,
@@ -26,7 +26,7 @@ export class ConductorService {
       "id_asociacion": conductor.sindicato,
       "id_ueducativa": conductor.ueducativa,
       "fotografia":conductor.img,
-      "expedicion":conductor.lugar
+      "expedicion":conductor.expedicion
     }
 
     let url = `${base_url}/conductores`;
@@ -51,6 +51,11 @@ export class ConductorService {
   deleteConductor(id:any){
     let url = `${base_url}/conductores/${id}`;
     return this.http.delete(url);
+  }
+
+  getConductorById(id:any){
+    let url = `${base_url}/conductores/${id}`;
+    return this.http.get(url);
   }
   
   lastID(){

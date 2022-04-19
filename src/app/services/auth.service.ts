@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment.prod';
+
+const base_url = environment.base_url;
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +11,7 @@ import { map } from 'rxjs/operators';
 export class AuthService {
 
   constructor(
-    private http:HttpClient,
-    private headers:HttpHeaders
+    private http:HttpClient
     ) { 
 
   }
@@ -20,7 +22,7 @@ export class AuthService {
   }
 
   login(user:any){
-    let url = `http://localhost:3000/api/Users/login?include=user`;
+    let url = `${base_url}/Users/login?include=user`;
     return this.http.post(url, user)
     .pipe(map(data=>data));
   }
@@ -32,11 +34,11 @@ export class AuthService {
 
   setToken(token:any){
     //let token_string = JSON.stringify(token)
-    localStorage.setItem('accessToken', token);
+    localStorage.setItem('token', token);
   }
 
   getToken(){
-    return localStorage.getItem('accessToken');
+    return localStorage.getItem('token');
   }
 
   getCurrentUser(){
@@ -50,10 +52,10 @@ export class AuthService {
   }
 
   logout(){
-    let token = this.getToken()
-    let url = `http://localhost:3000/api/Users/logout?access_token=${token}`;
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('accessToken');
-    return this.http.post(url, {headers:this.headers});
+    //let token = this.getToken()
+    //let url = `${base_url}/Users/logout?access_token=${token}`;
+    //localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
+    //return this.http.post(url, {headers:this.headers});
   }
 }

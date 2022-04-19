@@ -11,7 +11,7 @@ export class SidebarService {
       icono: 'mdi mdi-gauge',
       submenu: [
         //{ titulo: 'Principal', url: '/' },
-        { titulo: 'Conductor', url: '/dashboard/inscribir' },
+        { titulo: 'Conductor', url: '/dashboard/inscribir/0' },
         { titulo: 'Sindicato', url: '/dashboard/asociacion/0' },
         { titulo: 'Unidad Educativa', url: '/dashboard/ueducativa/0' },
         //{ titulo: 'Acerca de', url: '/dashboard/about' },

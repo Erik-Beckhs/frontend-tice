@@ -277,6 +277,7 @@ export class ListsService {
     {value:3, name:'Juana Azurduy de Padilla'},
     {value:4, name:'Mariscal Santa Cruz'}
   ];
+  //ueducativas:any;
 
   // sindicatos:any[]=[
   //   {value:1, name:'Taxis Montero'},
@@ -330,8 +331,13 @@ export class ListsService {
   ]
 
   constructor() { 
-
+    
   }
+
+  // getUEducativas(){
+  //   let url = ;
+  //   return this.http.get(url);
+  // }
 
 
 

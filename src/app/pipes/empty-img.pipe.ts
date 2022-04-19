@@ -7,7 +7,7 @@ export class EmptyImgPipe implements PipeTransform {
 
   transform(value: any): string {
     let res=''
-    if(value == '' || value==null){
+    if(value === '' || value === null){
       res = 'https://media.prodalam.cl/default/default.png';
     }
     return res;

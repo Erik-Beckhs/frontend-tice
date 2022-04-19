@@ -11,6 +11,9 @@ import html2canvas from 'html2canvas';
 
 import swal from 'sweetalert';
 import { AntecedentesService } from '../../services/antecedentes.service';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { EditConductorComponent } from '../edit-conductor/edit-conductor.component';
 
 export interface UserData {
   id: string;
@@ -36,7 +39,9 @@ export class ConsultarComponent implements OnInit {
 
   constructor(
     public _conductor:ConductorService,
-    private _antecedentes:AntecedentesService
+    //private _antecedentes:AntecedentesService,
+    private router:Router,
+    public dialog: MatDialog
     ) { 
     // Create 100 users
     //const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
@@ -93,7 +98,17 @@ export class ConsultarComponent implements OnInit {
   }
 
   modificar(value){
-    alert("modificar"+value);
+    //this.router.navigate(['dashboard', 'inscribir', value]);
+    //abrir dialog y pasar variable
+    
+    const dialogRef = this.dialog.open(EditConductorComponent, {
+      width: '800px',
+      data: value
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log(`Dialog result: ${result}`);
+    // });
   }
 
   downloadPDF(){
@@ -119,5 +134,9 @@ export class ConsultarComponent implements OnInit {
       docResult.save(`conductores.pdf`);
     });
   }
+}
+
+function DialogContentExampleDialog(DialogContentExampleDialog: any) {
+  throw new Error('Function not implemented.');
 }
 
