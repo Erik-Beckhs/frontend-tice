@@ -327,12 +327,9 @@ export class ListsService {
     'Blanco',
     'Cafe',
     'Negro',
-    'Rojo'
+    'Rojo',
+    'Otro'
   ]
-
-  constructor() { 
-    
-  }
 
   // getUEducativas(){
   //   let url = ;

@@ -9,17 +9,18 @@ const base_url = environment.base_url;
   providedIn: 'root'
 })
 export class AuthService {
+  user:any;
 
   constructor(
     private http:HttpClient
     ) { 
-
+    
   }
 
-  registerUser(user:any){
-    let url = ``;
-    return this.http.post(url, user);
-  }
+  // registerUser(user:any){
+  //   let url = ``;
+  //   return this.http.post(url, user);
+  // }
 
   login(user:any){
     let url = `${base_url}/Users/login?include=user`;
@@ -42,13 +43,13 @@ export class AuthService {
   }
 
   getCurrentUser(){
-    let a = localStorage.getItem('currentUser');
-    if(a){
-      return a;
+    const a = localStorage.getItem('current_user');
+
+    if(a !== null){
+      //console.log(typeof a);
+      this.user = JSON.parse(a);
     }
-    else{
-      return null;
-    }
+    return this.user;
   }
 
   logout(){

@@ -57,6 +57,9 @@ export class LoginComponent implements OnInit {
         //seteamos el token
         this.auth.setToken(resp.id);
 
+        //seteamos el usuario
+        this.auth.setUser(resp);
+
         // Navegar al Dashboard
         this.router.navigateByUrl('/dashboard');
 

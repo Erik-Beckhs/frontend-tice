@@ -12,5 +12,4 @@ export class EmptyImgPipe implements PipeTransform {
     }
     return res;
   }
-
 }

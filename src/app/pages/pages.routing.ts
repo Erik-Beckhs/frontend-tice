@@ -32,7 +32,7 @@ const routes: Routes = [
         component: PagesComponent,
         canActivate: [ AuthGuard ],
         children: [
-            { path: '', component: ConsultarComponent, data: { titulo: 'Principal' } },
+            { path: '', component: PrincipalComponent, data: { titulo: 'Principal' } },
             { path: 'profile', component: ProfileComponent, data: { titulo: 'Mi Perfil' }},
             { path: 'inscribir/:id', component: InscribirComponent, data: { titulo: 'Registro de Conductores' }},
             { path: 'consultar', component: ConsultarComponent, data: { titulo: 'Lista de Conductores' }},

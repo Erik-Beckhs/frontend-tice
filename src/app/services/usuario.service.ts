@@ -40,7 +40,7 @@ export class UsuarioService {
     // });
     //let token = localStorage.getItem('token');
     //let url = `${base_url}/Users/logout?access_token=${token}`;
-    //localStorage.removeItem('currentUser');
+    localStorage.removeItem('current_user');
     localStorage.removeItem('token');
     this.router.navigateByUrl('/login');
     //return this.http.post(url, {headers:this.headers});
@@ -96,7 +96,5 @@ export class UsuarioService {
                 );
 
   }
-
-  
 
 }

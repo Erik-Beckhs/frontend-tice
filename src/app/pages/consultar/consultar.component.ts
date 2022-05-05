@@ -29,7 +29,7 @@ export interface UserData {
 })
 export class ConsultarComponent implements OnInit {
 
-  displayedColumns: string[] = ['#', 'nombre', 'ci', 'ueducativa', 'sindicato', 'placa', 'tipo', 'fecharegistro', 'acciones'];
+  displayedColumns: string[] = ['#', 'nombre', 'ci', 'ueducativa', 'sindicato', 'placa', 'tipo', 'acciones'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

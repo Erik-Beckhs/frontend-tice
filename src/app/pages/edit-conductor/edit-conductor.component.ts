@@ -1,8 +1,12 @@
 import { Component, Inject, OnInit, Optional } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ConductorService } from '../../services/conductor.service';
 import { VehiculoService } from '../../services/vehiculo.service';
 import { Router } from '@angular/router';
+
+const img = 'https://www.bellavista.cl/static/assets/images/without_image.jpg';
+//import * as printJS from 'print-js';
+import { ImprimirTICEComponent } from '../imprimir-tice/imprimir-tice.component';
 
 @Component({
   selector: 'app-edit-conductor',
@@ -23,6 +27,7 @@ export class EditConductorComponent implements OnInit {
     private _conductor:ConductorService,
     private _vehiculo:VehiculoService,
     private router:Router,
+    public dialog: MatDialog,
     public dialogRef: MatDialogRef<any>
     ) { 
     //this.loadConductor();
@@ -46,7 +51,10 @@ export class EditConductorComponent implements OnInit {
   loadVehiculo(){
     this._vehiculo.getVehiculoByIdConductor(this.data).subscribe((res)=>{
       this.vehiculo = res;
-      console.log(this.vehiculo);
+      if(!this.vehiculo.img){
+        this.vehiculo.img = img;
+      }
+      //console.log(this.vehiculo);
     })
   }
 
@@ -55,4 +63,16 @@ export class EditConductorComponent implements OnInit {
     this.router.navigate(['/dashboard/inscribir', this.data]);
   }
 
+  openPrint(){
+    
+    this.dialog.open(ImprimirTICEComponent, {
+      width: '800px',
+      data: {
+        conductor:this.conductor,
+        vehiculo:this.vehiculo
+      }
+    });
+
+    this.dialogRef.close();
+  }
 }

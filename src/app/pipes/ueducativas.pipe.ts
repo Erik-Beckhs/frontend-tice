@@ -11,20 +11,34 @@ export class UeducativasPipe implements PipeTransform {
   constructor(
     private _ueducativa:UeducativaService
     ){
-    //this.ueducativas = this._lists.ueducativas;
-    this._ueducativa.getUEducativas().subscribe((res:any)=>{
-      this.ueducativas = res;
-      console.log(this.ueducativas);
-    })
+      this._ueducativa.getUEducativas().subscribe((res:any)=>{
+        this.ueducativas = res;
+      })
   }
 
-  transform(idue:number): string {
+  transform(value:any): string {
+    var val:number = +value;
+
     let uedu='';
-    for(let edu of this.ueducativas){
-      if(edu.id == idue){
-        uedu=edu.nombre;
+    this.ueducativas.forEach(ueducativa=>{
+      if(ueducativa.id == val){
+        uedu = ueducativa.nombre;
       }
-    }
+    });
     return uedu;
+    // let c = 0;
+    // this.ueducativas.forEach(ueducativa=>{
+    //   if(ueducativa.id === val){
+    //     uedu = ueducativa.nombre;
+    //     c++;
+    //   }
+    // });
+
+    // if(c == 0){
+    //   uedu = 'Desconocido';
+    // }
+    
   }
+
+ 
 }

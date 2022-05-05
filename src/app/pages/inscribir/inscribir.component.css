@@ -71,3 +71,20 @@ mat-card{
   line-height: 25px;
   letter-spacing: 1px;
 }
+
+#fecha_nac{
+  width:75%;
+}
+
+.gestion{
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  line-height: 2rem;
+}
+
+.vertical{
+  width:20px;
+  word-wrap: break-word;
+  text-align:center;
+}

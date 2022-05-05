@@ -19,7 +19,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ComponentsModule } from '../components/components.module';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 
 //componentes
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -43,6 +43,7 @@ import { SindicatosListComponent } from './sindicatos-list/sindicatos-list.compo
 import { UeducativaComponent } from './ueducativa/ueducativa.component';
 import { UeducativasComponent } from './ueducativas/ueducativas.component';
 import { EditConductorComponent } from './edit-conductor/edit-conductor.component';
+import { ImprimirTICEComponent } from './imprimir-tice/imprimir-tice.component';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import { EditConductorComponent } from './edit-conductor/edit-conductor.componen
     SindicatosListComponent,
     UeducativaComponent,
     UeducativasComponent,
-    EditConductorComponent
+    EditConductorComponent,
+    ImprimirTICEComponent
   ],
   exports: [
     DashboardComponent,
@@ -82,7 +84,9 @@ import { EditConductorComponent } from './edit-conductor/edit-conductor.componen
     ProfileComponent,
     UeducativaComponent,
     UeducativasComponent,
-    EditConductorComponent
+    EditConductorComponent,
+    InscribirComponent,
+    ImprimirTICEComponent
   ],
   imports: [ 
     CommonModule,

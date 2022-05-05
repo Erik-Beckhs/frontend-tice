@@ -20,7 +20,7 @@ export class VehiculoService {
   }
 
   modificaVehiculo(vehiculo:any, idVehiculo){
-    let url = `${base_url}/api/vehiculos/${idVehiculo}`;
+    let url = `${base_url}/vehiculos/${idVehiculo}`;
     return this.http.patch(url, vehiculo);
   }
 
@@ -48,5 +48,10 @@ export class VehiculoService {
         return data[0];
       }
     ))
+  }
+
+  getVehiculos(){
+      let url = `${base_url}/vehiculos`;
+      return this.http.get(url);
   }
 }

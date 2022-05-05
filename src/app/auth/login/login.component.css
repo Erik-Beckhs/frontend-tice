@@ -48,4 +48,19 @@ Login register and recover password Page
       right: 0px;
       position: absolute;
       height: 100%; }
-  
+
+  .img-slide{
+    width:1200px;
+    height:725px;
+    /*min-width:792px;
+    min-height:506px;*/
+  }
+
+  button.carousel-control-prev, button.carousel-control-next  {
+    opacity: 0.1;
+    width: 100px;
+  }
+
+  button.carousel-control-next{
+    right:15px !important;
+  }

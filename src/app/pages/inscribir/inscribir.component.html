@@ -74,16 +74,21 @@
                                 <div class="row">
                                   <div class="col-6">
                                     <div class="form-group">
-                                      <label for="fnac">Fecha de Nacimiento</label>
-                                      <input required type="date" class="form-control" [(ngModel)]="conductor.fnac" name ="fnac"  id="fnac" >
+                                      <label for="fecha_nac">Fecha de Nacimiento</label>
+
+                                      <input required matInput [matDatepicker]="picker" [(ngModel)]="conductor.fecha_nac" id="fecha_nac" name="fecha_nac">
+                                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                      <mat-datepicker #picker></mat-datepicker>
+
+                                      <!--<input required type="date" class="form-control" [value]="conductor.fecha_nac" [(ngModel)]="conductor.fecha_nac" name ="fecha_nac"  id="fecha_nac" >-->
                                   </div>
                                   </div>
                                   <div class="col-6">
                                     <div class="form-group">
-                                      <label for="tsangre">Tipo de Sangre</label>
-                                      <select required name="tsangre" id="tsangre" class="form-control" ngModel>
-                                        <option value="" disabled>Elija una opciòn</option>
-                                        <option *ngFor="let item of tiposangre" [ngValue]="item.value">{{item.name}}</option>
+                                      <label for="tipo_sangre">Tipo de Sangre</label>
+                                      <select required name="tipo_sangre" id="tipo_sangre" class="form-control" [(ngModel)]="conductor.tipo_sangre">
+                                        <option value='' disabled>Elija una opciòn</option>
+                                        <option *ngFor="let item of tiposangre" [value]="item.value">{{item.name}}</option>
                                       </select>
                                     </div>
                                   </div>
@@ -100,10 +105,6 @@
                               <label for="direccion">Dirección</label>
                               <input required type="text" class="form-control" [(ngModel)]="conductor.direccion" name="direccion"  id="direccion" placeholder="Dirección">
                             </div>
-                             <div class="d-flex justify-content-end">
-                                <!--<button type="submit" class="form-control" mat-raised-button color="primary"><i class="fa fa-save"></i> Guardar</button>
-                                <button type="submit" class="btn btn-inverse waves-effect waves-light">Limpiar</button>-->
-                             </div>
                           
                         </div>
                     </div>
@@ -123,8 +124,9 @@
                       </div>-->
                       <div class="d-flex justify-content-center">
                         <div class="d-flex" style="flex-direction:column;">
-                          <img *ngIf="!imageTempUser" [src]="conductor.img | emptyImg" class="w-200">
-                          <img *ngIf="imageTempUser" [src]="imageTempUser" class="w-200">
+                          <!--<img [src]="conductor.fotografia | emptyImg" class="w-200">
+                          <img *ngIf="!imageTempUser" [src]="conductor.fotografia | emptyImg" class="w-200">-->
+                          <img [src]="conductor.fotografia" class="w-200">
     
                           <input type="file" class="my-2" (change)="onFileChangeUser($event)">
                         </div>
@@ -138,16 +140,16 @@
                         </div>
                         <div class="form-group">
                           <label for="sindicato">Sindicato</label>
-                          <select required class="form-control" name="sindicato" id="sindicato"ngModel>
-                            <option value="" disabled>Elija una opciòn</option>
-                            <option *ngFor="let item of sindicatos" [ngValue]="item.id">{{item.nombre}}</option>
+                          <select required class="form-control" name="id_asociacion" id="id_asociacion" [(ngModel)]="conductor.id_asociacion">
+                            <option value='' disabled>Elija una opciòn</option>
+                            <option *ngFor="let item of sindicatos" [value]="item.id">{{item.nombre}}</option>
                           </select>
                         </div>
                         <div class="form-group">
-                          <label for="ueducativa">Unidad Educativa</label>
-                          <select required class="form-control" ngModel name="ueducativa" id="ueducativa">
-                            <option value="" disabled>Elija una opciòn</option>
-                            <option *ngFor="let item of ueducativas" [ngValue]="item.id">{{item.nombre}}</option>
+                          <label for="id_ueducativa">Unidad Educativa</label>
+                          <select required class="form-control" [(ngModel)]="conductor.id_ueducativa" name="id_ueducativa" id="id_ueducativa">
+                            <option value='' disabled>Elija una opción</option>
+                            <option *ngFor="let item of ueducativas" [value]="item.id">{{item.nombre}}</option>
                           </select>
                         </div>
                         <div class="row">
@@ -159,10 +161,10 @@
                               </div>
                               <div class="col-6">
                                 <div class="form-group">
-                                  <label for="categoriacond">Categoria</label>
-                                  <select required name="categoria" id="categoria" class="form-control" ngModel>
+                                  <label for="cat_licencia">Categoria</label>
+                                  <select required name="cat_licencia" id="cat_licencia" class="form-control" [(ngModel)]="conductor.cat_licencia">
                                     <option value="" disabled>Elija una opciòn</option>
-                                    <option *ngFor="let item of categorias" [ngValue]="item">{{item}}</option>
+                                    <option *ngFor="let item of categorias" [value]="item">{{item}}</option>
                                   </select>
                                 </div>
                               </div>
@@ -175,7 +177,7 @@
             </div>
 
             <div class="d-flex justify-content-end">
-              <button mat-raised-button (click)="next1()" [disabled]="fConductor.invalid" color="primary"> Siguiente <i class="fa fa-forward"></i></button>
+              <button mat-raised-button (click)="next1(fConductor)" [disabled]="fConductor.invalid" color="primary"> Siguiente <i class="fa fa-forward"></i></button>
             </div>
 
           </form>
@@ -209,8 +211,8 @@
                         </div>
                         <div class="col-6">
                           <div class="form-group">
-                            <label for="exampleInputEmail1">Número de Placa</label>
-                            <input required type="text" class="form-control" [(ngModel)]="vehiculo.placa" name="placa" id="exampleInputEmail1" placeholder="Número de Placa">
+                            <label for="placa">Número de Placa</label>
+                            <input required type="text" class="form-control" [(ngModel)]="vehiculo.placa" name="placa" id="placa" placeholder="Número de Placa">
                         </div>
                       </div>
                       </div>
@@ -224,9 +226,9 @@
                           <div class="col-6">
                             <div class="form-group">
                               <label for="procedencia">Procedencia</label>
-                              <select required name="procedencia" id="procedencia" class="form-control" ngModel>
+                              <select required name="procedencia" id="procedencia" class="form-control" [(ngModel)]="vehiculo.procedencia">
                                 <option value="" disabled>Elija una opción</option>
-                                <option *ngFor="let item of pais" [ngValue]="item">{{item}}</option>
+                                <option *ngFor="let item of pais" [value]="item">{{item}}</option>
                               </select>
                             </div>
                           </div>
@@ -241,9 +243,9 @@
                             <div class="col-6">
                               <div class="form-group">
                                 <label for="color">Color</label>
-                                <select required name="color" id="color" class="form-control" ngModel>
+                                <select required name="color" id="color" class="form-control" [(ngModel)]="vehiculo.color">
                                   <option value="" disabled>Elija una opción</option>
-                                  <option *ngFor="let item of colores" [ngValue]="item">{{item}}</option>
+                                  <option *ngFor="let item of colores" [value]="item">{{item}}</option>
                                 </select>
                               </div>
                             </div>
@@ -270,9 +272,9 @@
                           <div class="col-6">
                             <div class="form-group">
                               <label for="tipo">Tipo de Servicio</label>
-                              <select required name="tipo" id="tipo" class="form-control" ngModel>
+                              <select required name="tipo" id="tipo" class="form-control" [(ngModel)]="vehiculo.tipo">
                                 <option value="" disabled>Elija una opciòn</option>
-                                <option *ngFor="let item of tservicios" [ngValue]="item">{{item}}</option>
+                                <option *ngFor="let item of tservicios" [value]="item">{{item}}</option>
                               </select>
                             </div>
                           </div>
@@ -299,8 +301,9 @@
               <p class="text-muted m-b-0 font-13"> {{vehiculo.marca}} {{vehiculo.modelo}} </p>
               <hr>
               <div class="row d-flex justify-content-center">
-                <img *ngIf="!imageTempVehicle" [src]="vehiculo.img | emptyImg" class="w-200">
-                <img *ngIf="imageTempVehicle" [src]="imageTempVehicle" class="w-200">
+                <!--<img *ngIf="!imageTempVehicle" [src]="vehiculo.img | emptyImg" class="w-200">
+                <img *ngIf="imageTempVehicle" [src]="imageTempVehicle" class="w-200">-->
+                <img [src]="vehiculo.img" class="w-200">
 
                 <input type="file" class="my-2" (change)="onFileChangeVehicle($event)">
               </div>
@@ -328,15 +331,19 @@
 
             <div class="d-flex justify-content-between">
               <button mat-raised-button color="primary" matStepperPrevious><i class="fa fa-backward"></i> Anterior</button>
-              <button mat-raised-button color="primary" [disabled]="fVehiculo.invalid" (click)="verificarVehiculo(fVehiculo.value)">Siguiente <i class="fa fa-forward"></i></button>
+              <button mat-raised-button color="primary" [disabled]="fVehiculo.invalid" (click)="next2(fVehiculo)">Siguiente <i class="fa fa-forward"></i></button>
             </div>
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Tarjeta TICE</ng-template>
 
-          <div>
+          <div class="mat-elevation-z8 p-4">
             <div class="d-flex justify-content-center">
-              <button mat-raised-button color="accent" (click)="genera(fConductor, fVehiculo)"><i class="fa fa-save"></i> Generar Tarjeta</button>
+              <button mat-raised-button color="accent" (click)="genera(fConductor, fVehiculo)">
+                <i class="fa fa-vcard-o"></i> 
+                <span class="ml-1">Generar Tarjeta</span>
+               
+              </button>
             </div>
             
               <div *ngIf="card" class="bg-white mx-5">
@@ -345,26 +352,30 @@
                   <div class="card">
                     <div class="card-header " >
                       <div class="d-flex justify-content-between">
-                        <img src="../../../assets/images/bolivia.jpg" alt="" class="w-200 h-150">
+                        <img src="../../../assets/images/logo-policia.jpg" alt="" class="w-150 h-150">
                         <div class="d-flex align-items-center">
                           <div>
                             <p class="text-center">CÓDIGO VEHÍCULO</p>
                             <p class="text-center">{{vehiculo.codigo}}</p>
                           </div>
                         </div>
-                        <ngx-qrcode 
+                        <!--<ngx-qrcode 
                           [elementType]="elementType" 
                           [value] = "value"
                           cssClass = "aclass"
                           errorCorrectionLevel = "L">
-                      </ngx-qrcode>
+                      </ngx-qrcode>-->
+                      <div class="w-150">
+                        <img src="../../../assets/images/QR TICE.png" alt="">
+                      </div>
                       <div class="d-flex align-items-center">
                         <div>
                           <p class="text-center">PLACA</p>
                           <p class="text-center">{{vehiculo.placa}}</p>
                         </div>
                       </div>
-                        <img src="../../../assets/images/logo-policia.jpg" alt="" class="w-200 h-200">
+                         <img src="../../../assets/images/bolivia.jpg" alt="" class="w-200 h-150">
+                        
                       </div>
                     <div class="mt-3">
                       <p class="title-card text-center">TARJETA DE IDENTIFICACIÓN DEL CONDUCTOR ESCOLAR</p>
@@ -374,41 +385,45 @@
                    <hr>
                    <div class="card-body">
                      <div class="row">
-                       <div class="col-4">
+                       <div class="col-3">
                           <div class="d-flex justify-content-center card-photo">
                             <p class="text-center fs-17">
-                              <span class="fw-bold">Codigo Cond.:</span>
-                              <span class="ml-1">{{conductor.numreg}}</span>
+                              <span class="fw-bold">Cod. Cond.:</span>
+                              <span class="ml-1">{{driver.codigo}}</span>
                             </p>
                             <div class="d-flex justify-content-center">
-                              <img [src]="imageTempUser" alt="" class="w-200">
+                              <!--<img [src]="driver.fotografia" alt="" class="w-200">-->
+                              <img [src]="driver.fotografia" class="w-200">
                             </div>
-                            <p class="text-center fs-17">{{driver.ci}} {{driver.expedicion}}</p>
+                            <p class="text-center fs-17">
+                              <span class="fw-bold">C.I.:</span>
+                              <span class="ml-1">{{driver.ci}} {{driver.expedicion}}</span>
+                            </p>
                          </div>
                        </div>
-                       <div class="col-8">
+                       <div class="col-7">
                           <div id="datos-tarjeta" class="p-3">
                             <p > 
                               <span class="fw-bold">Nombres: </span> 
-                              <span>{{conductor.nombre}} </span>
+                              <span>{{driver.nombres}} </span>
                             </p>
                             <p > 
                               <span class="fw-bold">Apellidos: </span> 
-                              <span>{{conductor.apellidos}} </span>
+                              <span>{{driver.apellidos}} </span>
                             </p>
                             <p > 
                               <span class="fw-bold">Tipo de Sangre: </span> 
-                              <span>{{driver.tsangre | uppercase}} </span>
+                              <span>{{driver.tipo_sangre | uppercase}} </span>
                             </p>
                             <p > 
                               <span class="fw-bold"> Licencia: </span> 
-                              <span>{{conductor.licencia}} </span>
+                              <span>{{driver.licencia}} </span>
                               <span class="fw-bold ml-4">Categoria: </span> 
-                              <span>{{driver.categoria | uppercase}} </span>
+                              <span>{{driver.cat_licencia | uppercase}} </span>
                             </p>
                             <p>
                               <span class="fw-bold">Unidad Educativa: </span> 
-                              <span>{{driver.ueducativa | ueducativas}}</span>
+                              <span>{{driver.id_ueducativa | ueducativas}}</span>
                             </p>
                             <p>
                               <span class="fw-bold">Tipo de Servicio: </span> 
@@ -418,6 +433,11 @@
                           </div>
                           <p class="fw-bold fs-20 text-center">VALIDO DEL {{hoy}} AL {{ffin}}</p>
                        </div>
+                       <div class="col-2 gestion">
+                         <div class="vertical">
+                          {{today.getFullYear()}}
+                         </div>
+                       </div>
                     </div>
                    </div>
                   </div>
@@ -425,15 +445,19 @@
                 </form>
 
                  <div class="d-flex justify-content-end mt-3">
-                  <button mat-raised-button color="warn" class="mx-1"(click)="registrar()" ><i class="fa fa-save"></i> {{idConductor?'Actualizar':'Registrar'}} </button>
-                  <button mat-raised-button (click)="imprimir()" color="warn" [disabled]="!registrado" ><i class="fa fa-print"></i> Imprimir</button>
-                  <button mat-raised-button color="warn" class="mx-1"><i class="fa fa-plus"></i> Nuevo</button>
-                  <button mat-raised-button color="warn" [routerLink]="['/dashboard/consultar']"><i class="fa fa-users"></i> Lista de Conductores</button>
+                   <!--<div>
+                      <button  mat-raised-button color="warn" (click)="tamQR()">
+                        <i class="fa fa-arrows"></i>
+                          Ajustar
+                      </button>
+                   </div>-->                   
+                   <div>
+                    <button mat-raised-button color="warn" class="mx-1" (click)="registrar()" ><i class="fa fa-save"></i> {{idConductor?'Actualizar':'Registrar'}} </button>
+                    <button mat-raised-button class="mx-1" (click)="imprimir()" color="warn" [disabled]="!registrado" ><i class="fa fa-print"></i> Imprimir</button>
+                    <button mat-raised-button class="mx-1" color="warn" [routerLink]="['/dashboard/consultar']"><i class="fa fa-users"></i> Lista de Conductores</button>
+                   </div>
                 </div>
-
               </div>
-         
-            
           </div>
 
           <div class="d-flex justify-content-start mt-4">

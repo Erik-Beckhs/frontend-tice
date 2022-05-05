@@ -3,10 +3,10 @@
       <div class="col-6">
         <div class="card card-body border">
         <div class="row pl-3">
-          <i class="fa fa-user-circle"></i>
+          <i class="fa fa-user-circle fa-2x"></i>
           <span class="box-title m-b-0 h5 ml-2">Mi Perfil</span>
         </div>
-          <span class="text-muted font-13"> Información de cuenta </span>
+          <span class="text-muted font-13 mt-1"> Información de la cuenta </span>
           <hr>
           <div class="row">
               <div class="col-sm-12 col-xs-12">
@@ -52,10 +52,10 @@
           </div>
         </div>
       </div>
-      <div class="col-6">
+      <!--<div class="col-6">
         <div class="card card-body border">
           <div class="box-title m-b-0 h5">Imagen</div>
-          <p class="text-muted m-b-0 font-13"> Nombre Usuario</p>
+          <p class="text-muted m-b-0 font-13"> {{usuario.nombre}} {{usuario.apellidos}}</p>
           <hr>
           <div class="row d-flex justify-content-center">
             <img *ngIf="!imageTemp" [src]="usuario.img" class="w-200">
@@ -66,6 +66,6 @@
             <button mat-raised-button color="primary" (click)="updateImage()" [disabled]="!imageLoad"  class="btn px-5 form-control scale"><i class="fa fa-save"></i> Actualizar Imagen</button>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
   </div>

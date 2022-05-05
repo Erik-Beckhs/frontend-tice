@@ -17,7 +17,7 @@ export class SidebarComponent implements OnInit {
     private _usuario:UsuarioService 
     ) {
     this.menuItems = sidebarService.menu;
-    console.log(this.menuItems)
+    //console.log(this.menuItems)
   }
 
   ngOnInit(): void {

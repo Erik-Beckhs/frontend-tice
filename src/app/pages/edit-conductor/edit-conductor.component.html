@@ -1,8 +1,13 @@
 
-<div class="p-2">
-    <div class="header d-flex justify-content-between">
-        <div class="h4">Dirección Departamental de Tránsito, Transporte y Seguridad Vial Santa Cruz</div>
-        <div><img src="../../../assets/images/logo-pol.png" class="w-70"></div>
+<div class="p-2 gral">
+    <div class="row header d-flex justify-content-between">
+        <div class="col-md-2">
+            <img src="../../../assets/images/bolivia.jpg" class="w-70">
+        </div>
+        <div class="col-md-8 text-center">
+            <span class="h4">Dirección Departamental de Tránsito, Transporte y Seguridad Vial Santa Cruz</span>
+        </div>
+        <div class="col-md-2"><img src="../../../assets/images/logo-pol.png" class="w-70"></div>
     </div>
     <hr>
     <div class="body">
@@ -14,7 +19,7 @@
             <div class="row p-2">
                 <div class="col-md-6">
                         <div>
-                            <img [src]="conductor.fotografia | emptyImg" class="w-200">
+                            <img [src]="conductor.fotografia" class="w-200">
                             <!--{{conductor.fotografia}}-->
                         </div>
                         <div>
@@ -55,10 +60,26 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
+                            <p class="fw-500">Dirección:</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{conductor.direccion}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
                             <p class="fw-500">Categoria:</p>
                         </div>
                         <div class="col-md-6">
                             <p>{{conductor.cat_licencia}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="fw-500">Licencia:</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{conductor.licencia}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -97,10 +118,10 @@
             <div class="row p-2">
                 <div class="col-md-6">
                     <div>
-                        <img [src]="vehiculo.img | emptyImg" class="w-200">
+                        <img [src]="vehiculo.img" class="w-200">
                         <!--{{conductor.fotografia}}-->
                     </div>
-                    <div>
+                    <div class="mt-2">
                         <div class="row">
                             <div class="col-md-6">
                                 <p class="fw-500">Placa:</p>
@@ -192,8 +213,14 @@
                 <button (click)="dialogRef.close()" mat-raised-button color="secondary">Cerrar &#215;</button>
             </div>
             <div>
-                <button mat-raised-button color="primary" class="mx-1">Renovar Tarjeta</button>
-                <button (click)="editarRenovar()" mat-raised-button color="primary" class="mx-1">Editar y Renovar Tarjeta</button>
+                <button (click)="openPrint()" type="button" mat-raised-button color="primary" class="mx-1" >
+                    <i class="fa fa-print"></i>
+                   <span class="ml-1">Imprimir Tarjeta</span>
+                </button>
+                <button (click)="editarRenovar()" mat-raised-button color="primary" class="mx-1">
+                    <i class="fa fa-edit"></i>
+                    <span class="ml-1">Editar e Imprimir Tarjeta</span>
+                </button>
             </div>
         </div>
     </div>
