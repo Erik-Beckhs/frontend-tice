@@ -288,7 +288,10 @@ export class ListsService {
 
   tservicios: any[] = [
    'Bus Escolar',
-   'Taxi',
+   'Bus Universitario',
+   'Gondola',
+   'Taxi Escolar',
+   'Taxi Libre',
    'Trufi',
    'Otro'
   ];
@@ -316,9 +319,17 @@ export class ListsService {
   ciudades:string[]=[
     'Montero',
     'Warnes',
-    'Santa Cruz',
+    'Santa Cruz de la Sierra',
     'Urubo',
-    'Cotoca'
+    'Cotoca',
+    'San Ignacio',
+    'La Guardia',
+    'Roboré',
+    'Camiri',
+    'Concepcion',
+    'Puerto Quijarro',
+    'Yapacani',
+    'Puerto Suarez'
   ]
 
   colores:string[]=[
@@ -328,8 +339,14 @@ export class ListsService {
     'Cafe',
     'Negro',
     'Rojo',
+    'Gris','Plata', 'Dorado', 'Beige', 'Cafe', 'Verde',
     'Otro'
   ]
+
+  generos:any[]=[
+    {valor:1, name:'Masculino'},
+    {valor:0, name:'Femenino'}
+  ];
 
   // getUEducativas(){
   //   let url = ;

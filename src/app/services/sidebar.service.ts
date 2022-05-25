@@ -8,7 +8,7 @@ export class SidebarService {
   menu: any[] = [
     {
       titulo: 'Empadronamiento',
-      icono: 'mdi mdi-gauge',
+      icono: 'mdi mdi-google-play',
       submenu: [
         //{ titulo: 'Principal', url: '/' },
         { titulo: 'Conductor', url: '/dashboard/inscribir/0' },
@@ -25,14 +25,13 @@ export class SidebarService {
     },
     {
       titulo: 'Listas',
-      icono: 'mdi mdi-format-list-bulleted-type',
+      icono: 'mdi mdi-google-play',
       submenu: [
         { titulo: 'Conductores', url: '/dashboard/consultar' },
         { titulo: 'Sindicatos', url: '/dashboard/sindicatos' },
         { titulo: 'Unidades Educativas', url: '/dashboard/ueducativas' },
         //{ titulo: 'Movilidad / asociacion', url: '/dashboard/movilidad-asoc' },
         { titulo: 'Habilitar / Deshabilitar', url: '/dashboard/habilitar' },
-        { titulo: 'Salir', url: '/login'}
         // { titulo: 'Principal', url: '/' },
         // { titulo: 'Gráficas', url: 'grafica1' },
         // { titulo: 'rxjs', url: 'rxjs' },

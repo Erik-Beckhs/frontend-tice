@@ -5,8 +5,8 @@
         <div class="col-6">
           <div class="card-body border">
           <div class="row pl-3">
-            <i class="fa fa-group"></i>
-            <span class="box-title m-b-0 ml-2 h5">Datos Asociación</span>
+            <i class="fa fa-group fa-2x"></i>
+            <span class="box-title m-b-0 ml-2 h4">Datos Asociación</span>
           </div>
             <span class="text-muted font-13"> A continuación ingrese información de la asociación</span>
             <hr>
@@ -14,28 +14,32 @@
                 <div class="col-sm-12 col-xs-12">
                   
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Nombre</label>
-                      <input required type="text" class="form-control" [(ngModel)]="asociacion.nombre" name="nombre" id="exampleInputPassword1" placeholder="Nombres">
+                      <label for="nombre">Nombre</label>
+                      <input required type="text" class="form-control" [(ngModel)]="asociacion.nombre" name="nombre" id="nombre" placeholder="Nombres">
+                    </div>
+                    <div class="form-group">
+                      <label for="direccion">Dirección</label>
+                      <input required type="text" class="form-control" [(ngModel)]="asociacion.direccion" name="direccion" id="direccion" placeholder="Dirección">
                     </div>
                     <div class="row">
                       <div class="col-6">
                         <div class="form-group">
-                          <label for="exampleInputPassword1">Representante</label>
+                          <label for="representante">Representante</label>
                           <input required placeholder="Representante" type="text" class="form-control" [(ngModel)]="asociacion.representante" name="representante" class="form-control">
                         </div> 
                       </div>
                       <div class="col-6">
                         <div class="form-group">
-                          <label for="exampleInputPassword1">Dirección</label>
-                          <input required type="text" class="form-control" [(ngModel)]="asociacion.direccion" name="direccion" id="exampleInputPassword1" placeholder="Dirección">
-                      </div>
+                          <label for="nit">NIT</label>
+                          <input type="number" class="form-control" [(ngModel)]="asociacion.nit" name="nit" id="nit" placeholder="NIT">
+                        </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-6">
                         <div class="form-group">
                           <label for="ciudad">Ciudad</label>
-                          <select required class="form-control" name="ciudad" id="ciudad" ([ngModel])="asociacion.ciudad">
+                          <select required class="form-control" name="ciudad" id="ciudad" [(ngModel)]="asociacion.ciudad">
                             <option disabled value="">Seleccione un valor</option>
                             <option *ngFor="let item of ciudades" [value]="item">{{item}}</option>
                           </select>
@@ -65,7 +69,8 @@
         </div>
         <div class="col-6">
           <div class="card-body border">
-            <div class="box-title m-b-0 h5">Imagen</div>
+            <i class="fa fa-file-image-o fa-2x"></i>
+            <span class="box-title m-b-0 h4 ml-1">Imagen</span>
             <p class="text-muted m-b-0 font-13"> {{asociacion.nombre}} </p>
             <hr>
             <div class="row d-flex" style="flex-direction: column;">

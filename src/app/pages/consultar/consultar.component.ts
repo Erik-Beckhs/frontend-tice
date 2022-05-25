@@ -30,6 +30,7 @@ export interface UserData {
 export class ConsultarComponent implements OnInit {
 
   displayedColumns: string[] = ['#', 'nombre', 'ci', 'ueducativa', 'sindicato', 'placa', 'tipo', 'acciones'];
+  //displayedColumns: string[] = ['#', 'nombre', 'ci', 'ueducativa', 'sindicato', 'placa', 'tipo'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -97,7 +98,7 @@ export class ConsultarComponent implements OnInit {
 
   }
 
-  modificar(value){
+  modificar(value:any){
     //this.router.navigate(['dashboard', 'inscribir', value]);
     //abrir dialog y pasar variable
     
@@ -111,6 +112,9 @@ export class ConsultarComponent implements OnInit {
     // });
   }
 
+  antecedente(value:any){
+    this.router.navigate(['/dashboard/antecedente', value]);
+  }
   downloadPDF(){
     const DATA = document.getElementById('htmlData');
     const doc = new jsPDF('p', 'pt', 'a4');

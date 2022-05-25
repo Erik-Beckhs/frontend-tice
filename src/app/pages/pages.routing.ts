@@ -25,6 +25,7 @@ import { SindicatosListComponent } from './sindicatos-list/sindicatos-list.compo
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { UeducativasComponent } from './ueducativas/ueducativas.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { AntecedenteComponent } from './antecedente/antecedente.component';
 
 const routes: Routes = [
     { 
@@ -45,6 +46,7 @@ const routes: Routes = [
             { path: 'ueducativas', component: UeducativasComponent, data: { titulo: 'Lista de Unidades Educativas' }},
             { path: 'movilidad-asoc', component: MovilidadAsocComponent, data: { titulo: 'Asociaciones y Movilidades' }},
             { path: 'habilitar', component: HabilitarComponent, data: { titulo: 'Habilitar / Deshabilitar Usuarios' }},
+            { path: 'antecedente/:id', component: AntecedenteComponent, data: { titulo: 'Antecedentes del Conductor' }},
             { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Temas' }}
             //{ path: 'grafica', component: Grafica1Component, data: { titulo: 'Habilitar / Deshabilitar Usuarios' }},
         ]

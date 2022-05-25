@@ -44,6 +44,8 @@ import { UeducativaComponent } from './ueducativa/ueducativa.component';
 import { UeducativasComponent } from './ueducativas/ueducativas.component';
 import { EditConductorComponent } from './edit-conductor/edit-conductor.component';
 import { ImprimirTICEComponent } from './imprimir-tice/imprimir-tice.component';
+import { AntecedenteComponent } from './antecedente/antecedente.component';
+import { AntecedenteDialogComponent } from './antecedente-dialog/antecedente-dialog.component';
 
 
 @NgModule({
@@ -69,7 +71,9 @@ import { ImprimirTICEComponent } from './imprimir-tice/imprimir-tice.component';
     UeducativaComponent,
     UeducativasComponent,
     EditConductorComponent,
-    ImprimirTICEComponent
+    ImprimirTICEComponent,
+    AntecedenteComponent,
+    AntecedenteDialogComponent
   ],
   exports: [
     DashboardComponent,

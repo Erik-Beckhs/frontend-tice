@@ -28,7 +28,7 @@
                   <div class="card card-body border">
                   <div class="row pl-3">
                     <i class="fa fa-user-circle fa-2x"></i>
-                    <span class="box-title m-b-0 h5 ml-2">Datos Conductor</span>
+                    <span class="box-title m-b-0 h4 ml-2">Datos del Conductor</span>
                   </div>
                       <!--<ngx-qrcode 
                           [elementType]="elementType" 
@@ -42,20 +42,48 @@
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
 
-                              <div class="form-group">
-                                <label for="codigo">Número de Registro</label>
-                                <input readonly type="string" class="form-control" [(ngModel)]="conductor.codigo" name ="codigo"  id="numreg" placeholder="Numero de Registro"> 
-                              </div>
+                             <div class="row">
+                               <div class="col-6">
+                                <div class="form-group">
+                                  <label for="codigo">Número de Registro</label>
+                                  <input readonly type="string" class="form-control" [(ngModel)]="conductor.codigo" name ="codigo"  id="numreg" placeholder="Numero de Registro"> 
+                                </div>
+                               </div>
+                               <div class="col-6">
+                                <div class="form-group">
+                                  <label for="genero">Género</label>
+                                  <span class="text-danger">*</span>
+                                  <select required name="genero" id="genero" class="form-control" [(ngModel)]="conductor.genero">
+                                    <option value="" disabled>Elija una opción</option>
+                                    <option *ngFor="let item of generos" [value]="item.valor">{{item.name}}</option>
+                                  </select>
+                                </div>
+                               </div>
+                               
+                             </div>
+                                
+                                <div class="form-group">
+                                    <label for="nombres">Nombres</label>
+                                    <span class="text-danger">*</span>
+                                    <input required type="text" class="form-control" [(ngModel)]="conductor.nombres" name="nombres"  id="nombres" placeholder="Nombres">
+                                </div>
+                                <div class="form-group">
+                                    <label for="apellidos">Apellidos</label>
+                                    <span class="text-danger">*</span>
+                                    <input required type="text" class="form-control" [(ngModel)]="conductor.apellidos" name="apellidos"  id="apellidos" placeholder="Apeliidos">
+                                </div>
                                 <div class="row">
                                   <div class="col-6">
                                     <div class="form-group">
                                       <label for="ci">Documento de Identidad</label>
+                                      <span class="text-danger">*</span>
                                       <input required type="number" [(ngModel)]="conductor.ci" name ="ci" class="form-control" id="ci" placeholder="Documento de identidad">
                                   </div>
                                   </div>
                                   <div class="col-6">
                                     <div class="form-group">
                                       <label for="expedicion">Lugar de Expedición</label>
+                                      <span class="text-danger">*</span>
                                       <select required name="expedicion" id="expedicion" class="form-control" [(ngModel)]="conductor.expedicion">
                                         <option value="" disabled>Elija una opción</option>
                                         <option *ngFor="let item of expediciones" [value]="item.valor">{{item.valor}}</option>
@@ -63,19 +91,11 @@
                                     </div>
                                   </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="nombres">Nombres</label>
-                                    <input required type="text" class="form-control" [(ngModel)]="conductor.nombres" name="nombres"  id="nombres" placeholder="Nombres">
-                                </div>
-                                <div class="form-group">
-                                    <label for="apellidos">Apellidos</label>
-                                    <input required type="text" class="form-control" [(ngModel)]="conductor.apellidos" name="apellidos"  id="apellidos" placeholder="Apeliidos">
-                                </div>
                                 <div class="row">
                                   <div class="col-6">
                                     <div class="form-group">
                                       <label for="fecha_nac">Fecha de Nacimiento</label>
-
+                                      <span class="text-danger">*</span>
                                       <input required matInput [matDatepicker]="picker" [(ngModel)]="conductor.fecha_nac" id="fecha_nac" name="fecha_nac">
                                       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                       <mat-datepicker #picker></mat-datepicker>
@@ -86,6 +106,7 @@
                                   <div class="col-6">
                                     <div class="form-group">
                                       <label for="tipo_sangre">Tipo de Sangre</label>
+                                      <span class="text-danger">*</span>
                                       <select required name="tipo_sangre" id="tipo_sangre" class="form-control" [(ngModel)]="conductor.tipo_sangre">
                                         <option value='' disabled>Elija una opciòn</option>
                                         <option *ngFor="let item of tiposangre" [value]="item.value">{{item.name}}</option>
@@ -103,6 +124,7 @@
                               </div>-->
                             <div class="form-group">
                               <label for="direccion">Dirección</label>
+                              <span class="text-danger">*</span>
                               <input required type="text" class="form-control" [(ngModel)]="conductor.direccion" name="direccion"  id="direccion" placeholder="Dirección">
                             </div>
                           
@@ -136,17 +158,19 @@
                       <div class="mt-2">
                         <div class="form-group">
                           <label for="licencia">Licencia de Conducir</label>
+                          <span class="text-danger">*</span>
                           <input required type="text" class="form-control" [(ngModel)]="conductor.licencia" name="licencia"  id="licencia" placeholder="Licencia de conducir">
                         </div>
                         <div class="form-group">
                           <label for="sindicato">Sindicato</label>
-                          <select required class="form-control" name="id_asociacion" id="id_asociacion" [(ngModel)]="conductor.id_asociacion">
+                          <select class="form-control" name="id_asociacion" id="id_asociacion" [(ngModel)]="conductor.id_asociacion">
                             <option value='' disabled>Elija una opciòn</option>
                             <option *ngFor="let item of sindicatos" [value]="item.id">{{item.nombre}}</option>
                           </select>
                         </div>
                         <div class="form-group">
                           <label for="id_ueducativa">Unidad Educativa</label>
+                          <span class="text-danger">*</span>
                           <select required class="form-control" [(ngModel)]="conductor.id_ueducativa" name="id_ueducativa" id="id_ueducativa">
                             <option value='' disabled>Elija una opción</option>
                             <option *ngFor="let item of ueducativas" [value]="item.id">{{item.nombre}}</option>
@@ -162,6 +186,7 @@
                               <div class="col-6">
                                 <div class="form-group">
                                   <label for="cat_licencia">Categoria</label>
+                                  <span class="text-danger">*</span>
                                   <select required name="cat_licencia" id="cat_licencia" class="form-control" [(ngModel)]="conductor.cat_licencia">
                                     <option value="" disabled>Elija una opciòn</option>
                                     <option *ngFor="let item of categorias" [value]="item">{{item}}</option>
@@ -189,13 +214,12 @@
       <form ngNativeValidate #fVehiculo="ngForm">
      <div class="row">
       
-
         <div class="col-7">
           
           <div class="card card-body border">
             <div class="row pl-3">
-            <i class="fa fa-car"></i>
-            <span class="box-title m-b-0 h5 pl-2">Datos Vehículo</span>
+            <i class="fa fa-car fa-2x"></i>
+            <span class="box-title m-b-0 h4 pl-2">Datos del Vehículo</span>
             </div>
             <span class="text-muted font-13"> A continuación ingrese información del vehiculo </span>
             <hr>
@@ -206,12 +230,13 @@
                         <div class="col-6">
                           <div class="form-group">
                             <label for="exampleInputEmail1">Código de Vehículo</label>
-                            <input readonly required type="text" class="form-control" [(ngModel)]="vehiculo.codigo" name="codigo" id="exampleInputEmail1" placeholder="Código de Vehículo">
+                            <input readonly type="text" class="form-control" [(ngModel)]="vehiculo.codigo" name="codigo" id="exampleInputEmail1" placeholder="Código de Vehículo">
                           </div>
                         </div>
                         <div class="col-6">
                           <div class="form-group">
                             <label for="placa">Número de Placa</label>
+                            <span class="text-danger">*</span>
                             <input required type="text" class="form-control" [(ngModel)]="vehiculo.placa" name="placa" id="placa" placeholder="Número de Placa">
                         </div>
                       </div>
@@ -220,13 +245,14 @@
                           <div class="col-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Póliza</label>
+                                <span class="text-danger">*</span>
                                 <input required type="text" [(ngModel)]="vehiculo.poliza" name="poliza" class="form-control" id="exampleInputEmail1" placeholder="Poliza">
                             </div>
                           </div>
                           <div class="col-6">
                             <div class="form-group">
                               <label for="procedencia">Procedencia</label>
-                              <select required name="procedencia" id="procedencia" class="form-control" [(ngModel)]="vehiculo.procedencia">
+                              <select name="procedencia" id="procedencia" class="form-control" [(ngModel)]="vehiculo.procedencia">
                                 <option value="" disabled>Elija una opción</option>
                                 <option *ngFor="let item of pais" [value]="item">{{item}}</option>
                               </select>
@@ -237,12 +263,14 @@
                             <div class="col-6">
                               <div class="form-group">
                                 <label for="exampleInputEmail1">Chasis</label>
+                                <span class="text-danger">*</span>
                                 <input required type="text" class="form-control" [(ngModel)]="vehiculo.chasis" name="chasis"  id="" placeholder="Chasis">
                             </div>
                             </div>
                             <div class="col-6">
                               <div class="form-group">
                                 <label for="color">Color</label>
+                                <span class="text-danger">*</span>
                                 <select required name="color" id="color" class="form-control" [(ngModel)]="vehiculo.color">
                                   <option value="" disabled>Elija una opción</option>
                                   <option *ngFor="let item of colores" [value]="item">{{item}}</option>
@@ -272,6 +300,7 @@
                           <div class="col-6">
                             <div class="form-group">
                               <label for="tipo">Tipo de Servicio</label>
+                              <span class="text-danger">*</span>
                               <select required name="tipo" id="tipo" class="form-control" [(ngModel)]="vehiculo.tipo">
                                 <option value="" disabled>Elija una opciòn</option>
                                 <option *ngFor="let item of tservicios" [value]="item">{{item}}</option>
@@ -311,12 +340,14 @@
                 <div class="col-6">
                   <div class="form-group">
                     <label for="marca">Marca</label>
+                    <span class="text-danger">*</span>
                     <input required type="text" class="form-control" [(ngModel)]="vehiculo.marca" name="marca" id="marca" placeholder="Marca">
                 </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group">
                     <label for="modelo">Modelo</label>
+                    <span class="text-danger">*</span>
                     <input required type="text" class="form-control" [(ngModel)]="vehiculo.modelo" name="modelo" id="modelo" placeholder="Modelo">
                 </div>
                 </div>
@@ -366,7 +397,7 @@
                           errorCorrectionLevel = "L">
                       </ngx-qrcode>-->
                       <div class="w-150">
-                        <img src="../../../assets/images/QR TICE.png" alt="">
+                        <img src="../../../assets/images/QR TICE.png" alt="" class="w-150">
                       </div>
                       <div class="d-flex align-items-center">
                         <div>

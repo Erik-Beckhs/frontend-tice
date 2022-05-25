@@ -1,0 +1,36 @@
+<div class="col-md-12">
+    <div class="card card-body">
+        <div class="bg-info text-center pt-3">
+            <span class="box-title m-b-0 text-white h4">Nuevo Antecedente</span>
+            <p class="m-b-30 h6 text-white"> Dirección Departamental de Tránsito Santa Cruz </p>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12 mt-4 border py-2">
+                <form ngNativeValidate #form="ngForm" (ngSubmit)="registrar(form.value)">
+                    <div class="form-group">
+                        <label for="fecha">Fecha</label>
+                        <input type="date" class="form-control" name="fecha" id="fecha" [(ngModel)]="antecedente.fecha">
+                    </div>
+                    <div class="form-group">
+                        <label for="caso">Caso</label>
+                        <input readonly required type="text" class="form-control" name="caso" id="caso" [(ngModel)]="antecedente.caso">
+                    </div>
+                    <div class="form-group">
+                        <label for="disposicion">Disposicion</label>
+                        <textarea class="form-control" name="disposicion" id="disposicion" cols="30" rows="3" [(ngModel)]="antecedente.disposicion"></textarea>
+                        <!--<input required type="text" class="form-control" name="disposicion" id="disposicion" [(ngModel)]="antecedente.disposicion">-->
+                    </div>
+                    <div class="form-group">
+                        <label for="naturaleza">Naturaleza</label>
+                        <input required type="text" name="naturaleza" class="form-control" id="naturaleza" [(ngModel)]="antecedente.naturaleza">
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button type="button" (click)="dialogRef.close()" mat-raised-button color="secondary">Cancelar</button>
+                        <button type="submit" class="mx-1" mat-raised-button color="primary">Registrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

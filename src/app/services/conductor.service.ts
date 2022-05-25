@@ -51,4 +51,9 @@ export class ConductorService {
       data=>data[0]
     ))
   }
+
+  getCountDriversByGenero(){
+    let url= `${base_url}/conductores/countByGenero`;
+    return this.http.get(url);
+  }
 }

@@ -80,6 +80,7 @@ export class InscribirComponent implements OnInit {
   categorias:string[];
   colores:string[]=[];
   pais:string[]=[];
+  generos:any;
 
   ci_aux:any;
   placa_aux:any;
@@ -96,13 +97,15 @@ export class InscribirComponent implements OnInit {
   //   ueducativa:1,
   //   fnac:'27/05/1991'
   // };
+
   conductor:any = {
     tipo_sangre:'',
     id_ueducativa:'',
     id_asociacion:'',
     cat_licencia:'',
     expedicion:'', 
-    fotografia:img
+    fotografia:img,
+    genero:''
   }
 
   vehiculo:any = {
@@ -142,6 +145,7 @@ export class InscribirComponent implements OnInit {
       this.categorias = this._list.categorias;
       this.colores = this._list.colores;
       this.pais = this._list.pais.sort();
+      this.generos = this._list.generos;
 
       this.fechaActual();
 
@@ -170,9 +174,12 @@ export class InscribirComponent implements OnInit {
     //console.log(this.today2);
 
     // this.value2 = `
-    // DIVISIÓN  DE SERVICIOS PÚBLICOS DEPENDIENTES DE LA DIRECCIÓN DEPARTAMENTAL DE TRÁNSITO, TRANSPORTE Y SEGURIDAD VIAL SANTA CRUZ
-    // PROYECTO TICE 2022
-    // DERECHOS RESERVADOS
+    // UNIVERSIDAD MAYOR DE SAN ANDRÉS
+    // INSTITUTO DE INVESTIGACIONES EN INFORMÁTICA
+    // CERIFICADO CORRESPONDIENTE A: 
+    // CURSO:
+    // CODIGO: III-4031
+    // 2019
     // `
     //         ;
     }

@@ -54,4 +54,9 @@ export class VehiculoService {
       let url = `${base_url}/vehiculos`;
       return this.http.get(url);
   }
+
+  getVehiculosByTService(){
+    let url = `${base_url}/vehiculos/cantTipoServ`;
+    return this.http.get(url);
+  }
 }
