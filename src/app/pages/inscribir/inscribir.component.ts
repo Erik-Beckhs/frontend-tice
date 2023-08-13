@@ -176,10 +176,10 @@ export class InscribirComponent implements OnInit {
     // this.value2 = `
     // UNIVERSIDAD MAYOR DE SAN ANDRÉS
     // INSTITUTO DE INVESTIGACIONES EN INFORMÁTICA
-    // CERIFICADO CORRESPONDIENTE A: 
-    // CURSO:
-    // CODIGO: III-4031
-    // 2019
+    // CERTIFICADO CORRESPONDIENTE A: ERIK MAQUERA CAÑASTO
+    // CURSO: CUSTOMER RELATIONSHIP MANAGEMENT - ESTRATÉGIAS Y MÉTODOS
+    // CÓDIGO: III-4728
+    // 2020
     // `
     //         ;
     }
